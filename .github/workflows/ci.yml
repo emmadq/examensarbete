@@ -7,6 +7,22 @@ on:
       - development
 
 jobs:
+  check-pr-source:
+    if: github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Verify source branch
+        run: |
+          echo "Source branch: ${{ github.head_ref }}"
+          if [ "${{ github.head_ref }}" != "development" ]; then
+            echo "Error: Only pull requests from 'development' branch are allowed to merge into 'main'."
+            exit 1
+          fi
+
   build-backend:
     runs-on: ubuntu-latest
 
@@ -19,7 +35,6 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      # Temporär steg för att undvika misslyckande
       - name: Echo Backend Build Success
         run: echo "Backend build successful"
 
@@ -34,9 +49,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16" # Anpassa efter din Node.js-version
+          node-version: "16"
 
-      # Temporär steg för att undvika misslyckande
       - name: Echo Frontend Build Success
         run: echo "Frontend build successful"
 # name: CI Pipeline
