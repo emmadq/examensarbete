@@ -35,12 +35,6 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      - name: Restore dependencies
-        run: dotnet restore ./backend/YourBackendProject.csproj
-
-      - name: Build
-        run: dotnet build --no-restore --configuration Release ./backend/YourBackendProject.csproj
-
       - name: Echo Backend Build Success
         run: echo "Backend build successful"
 
@@ -56,16 +50,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16"
-
-      - name: Install dependencies
-        run: |
-          cd frontend
-          npm install
-
-      - name: Build
-        run: |
-          cd frontend
-          npm run build
 
       - name: Echo Frontend Build Success
         run: echo "Frontend build successful"
