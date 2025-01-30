@@ -1,0 +1,49 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore ./backend/YourBackendProject.csproj
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release ./backend/YourBackendProject.csproj
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    needs: build-backend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16" # Anpassa efter din Node.js-version
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build
+        run: |
+          cd frontend
+          npm run build
