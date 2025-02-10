@@ -1,4 +1,3 @@
--- Exempel på SQL-skript för att skapa tabeller
 CREATE DATABASE ExarDb;
 GO
 
