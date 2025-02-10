@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Paper,
   Table,
@@ -14,7 +13,8 @@ interface CovidData {
   state: string;
   positive: number;
 }
-export default function BigDataCovid() {
+
+const List = () => {
   const [dataset, setDataset] = useState<CovidData[]>([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -50,4 +50,5 @@ export default function BigDataCovid() {
       </TableContainer>
     </>
   );
-}
+};
+export default List;
