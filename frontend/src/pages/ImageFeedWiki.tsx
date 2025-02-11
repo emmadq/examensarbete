@@ -72,17 +72,7 @@ function ImageFeedWiki() {
                 />
               )}
               {page.extract && <p>{page.extract}</p>}
-              {page.fullurl && (
-                <p>
-                  <a
-                    href={page.fullurl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Läs mer
-                  </a>
-                </p>
-              )}
+              <br />
             </Paper>
           </li>
         ))}
