@@ -3,52 +3,44 @@ import React, { useEffect, useState } from "react";
 
 function ImageFeedWiki() {
   type articleType = {
-    pageid: number;
-    title: string;
-    extract?: string; // Sammanfattning
-    thumbnail?: {
-      source: string;
-      width: number;
-      height: number;
-    };
-    fullurl?: string;
+    id: string;
+    author: string;
+    width: number;
+    height: number;
+    url: string;
+    download_url: string;
   };
-  const [pages, setPages] = useState<articleType[]>([]);
+  const [entries, setEntries] = useState<articleType[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  function shuffleArray<T>(array: T[]): T[] {
+    const newArr = [...array];
+
+    for (let i = newArr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+
+    const returnArray = newArr.slice(0, 100);
+
+    return returnArray;
+  }
+
   useEffect(() => {
-    const fetchRandomArticles = async () => {
-      try {
-        const url =
-          "https://en.wikipedia.org/w/api.php?" +
-          new URLSearchParams({
-            action: "query",
-            generator: "random",
-            grnnamespace: "0", // Bara artiklar (ns=0)
-            grnlimit: "100", // Hämta 10 sidor
-            prop: "extracts|pageimages|info",
-            exintro: "2", // Hämta bara introduktionsdelen
-            explaintext: "1", // Ta bort HTML, ge ren text
-            pithumbsize: "200", // Storlek på ev. thumbnail-bild
-            inprop: "url", // Lägg till fullurl i svaret
-            formatversion: "2",
-            origin: "*", // CORS
-            format: "json",
-          }).toString();
+    const totalPages = 10;
+    const randomPage = Math.floor(Math.random() * totalPages) + 1;
 
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data?.query?.pages) {
-          setPages(data.query.pages);
+    fetch(`https://picsum.photos/v2/list?page=${randomPage}&limit=500`)
+      .then((resp) => resp.json())
+      .then((data) => {
+        try {
+          if (data) {
+            setEntries(shuffleArray(data));
+          }
+        } catch (e) {
+          console.log(e);
         }
-      } catch (err) {
-        console.error(err);
-        setError("Kunde inte hämta data från Wikipedia.");
-      }
-    };
-
-    fetchRandomArticles();
+      });
   }, []);
 
   if (error) {
@@ -57,34 +49,34 @@ function ImageFeedWiki() {
 
   return (
     <div>
-      <h1>Slumpmässiga Wikipedia-artiklar</h1>
+      <h1>Slumpmässiga bilder från Unsplash</h1>
       <ul>
-        {pages.map((page) => (
-          <li key={page.pageid} style={{ listStyleType: "none" }}>
-            <Paper elevation={7}>
-              <h2>{page.title}</h2>
-              {page.thumbnail && (
+        {entries.map((e) => (
+          <li key={e.id} style={{ listStyleType: "none" }}>
+            <Paper elevation={10}>
+              <br />
+              <h2>{e.author}</h2>
+              {e.url && (
                 <img
-                  src={page.thumbnail.source}
-                  alt={page.title}
-                  width={page.thumbnail.width}
-                  height={page.thumbnail.height}
+                  src={e.download_url}
+                  alt={e.author}
+                  width={600}
+                  height={400}
                 />
               )}
-              {page.extract && <p>{page.extract}</p>}
-              {page.fullurl && (
+              {e.url && (
                 <p>
-                  <a
-                    href={page.fullurl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Läs mer
+                  <a href={e.url} target="_blank" rel="noopener noreferrer">
+                    Mer info
                   </a>
                 </p>
               )}
               <br />
             </Paper>
+            <br />
+            <br />
+            <br />
+            <br />
           </li>
         ))}
       </ul>
