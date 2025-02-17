@@ -38,21 +38,42 @@ jobs:
       - name: Echo Backend Build Success
         run: echo "Backend build successful"
 
-  build-frontend:
-    runs-on: ubuntu-latest
-    needs: build-backend
+build-frontend:
+  runs-on: ubuntu-latest
+  needs: build-backend
 
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "16" # Anpassa efter din Node.js-version
+
+    - name: Install dependencies
+      run: |
+        cd frontend
+        npm install
+
+    - name: Build
+      run: |
+        cd frontend
+        npm run build
+
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    needs: build-frontend
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
         with:
-          node-version: "16"
-
-      - name: Echo Frontend Build Success
-        run: echo "Frontend build successful"
+          app-name: ${{ secrets.AZURE_APP_NAME }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: "frontend/build"
 # name: CI Pipeline
 
 # on:
@@ -80,7 +101,8 @@ jobs:
 #       - name: Build
 #         run: dotnet build --no-restore --configuration Release ./backend/YourBackendProject.csproj
 
-#   build-frontend:
+#
+# build-frontend:
 #     runs-on: ubuntu-latest
 #     needs: build-backend
 
@@ -91,14 +113,7 @@ jobs:
 #       - name: Setup Node.js
 #         uses: actions/setup-node@v3
 #         with:
-#           node-version: "16" # Anpassa efter din Node.js-version
+#           node-version: "16"
 
-#       - name: Install dependencies
-#         run: |
-#           cd frontend
-#           npm install
-
-#       - name: Build
-#         run: |
-#           cd frontend
-#           npm run build
+#       - name: Echo Frontend Build Success
+#         run: echo "Frontend build successful"
