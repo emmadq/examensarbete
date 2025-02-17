@@ -1,5 +1,5 @@
 import { Paper } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function ImageFeedWiki() {
   type articleType = {
@@ -11,7 +11,7 @@ function ImageFeedWiki() {
     download_url: string;
   };
   const [entries, setEntries] = useState<articleType[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
 
   function shuffleArray<T>(array: T[]): T[] {
     const newArr = [...array];
