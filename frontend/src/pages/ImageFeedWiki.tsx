@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { CircularProgress, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 function ImageFeedWiki() {
@@ -47,9 +47,18 @@ function ImageFeedWiki() {
     return <div>{error}</div>;
   }
 
+  if (entries.length === 0) {
+    return (
+      <>
+        <h2>Loading...</h2>;
+      </>
+    );
+  }
+
   return (
     <div>
       <h1>Slumpmässiga bilder från Unsplash</h1>
+
       <ul>
         {entries.map((e) => (
           <li key={e.id} style={{ listStyleType: "none" }}>
