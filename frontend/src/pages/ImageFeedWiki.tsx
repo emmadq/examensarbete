@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { Paper } from "@mui/material";
 import { useEffect, useState } from "react";
+=======
+import { CircularProgress, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+>>>>>>> a78592a0adb1a3e148fe374a25f29ef2d2073995
 
 function ImageFeedWiki() {
   type articleType = {
@@ -47,9 +52,18 @@ function ImageFeedWiki() {
     return <div>{error}</div>;
   }
 
+  if (entries.length === 0) {
+    return (
+      <>
+        <h2>Loading...</h2>;
+      </>
+    );
+  }
+
   return (
     <div>
       <h1>Slumpmässiga bilder från Unsplash</h1>
+
       <ul>
         {entries.map((e) => (
           <li key={e.id} style={{ listStyleType: "none" }}>
