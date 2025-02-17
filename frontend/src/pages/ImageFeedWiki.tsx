@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import { Paper } from "@mui/material";
 import { useEffect, useState } from "react";
-=======
-import { CircularProgress, Paper } from "@mui/material";
-import React, { useEffect, useState } from "react";
->>>>>>> a78592a0adb1a3e148fe374a25f29ef2d2073995
 
 function ImageFeedWiki() {
   type articleType = {
