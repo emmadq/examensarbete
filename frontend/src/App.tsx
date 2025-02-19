@@ -8,7 +8,11 @@ function App() {
       <br />
       <Link to="/coviddatapagination">Covid data with pagination</Link>
       <br />
-      <Link to="/wikiarticle">Picture feed</Link>
+      <Link to="/article">Picture feed</Link>
+      <br />
+      <Link to="/articleLazy">Picture feed Lazy loading</Link>
+      <br />
+      <Link to="/articlePagi">Picture feed Pagination</Link>
       <br />
       <Link to="/statistics">Statistics</Link>
     </>
