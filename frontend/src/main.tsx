@@ -9,8 +9,8 @@ import Statistics from "./pages/Statistics.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router";
 import BigDataCovidQuery from "./pages/BigDataCovidQuery.tsx";
-import { BigDataCovidMemo } from "./pages/BigDataCovidMemo.tsx";
 import { BigDataCovidMemoQuery } from "./pages/BigDataCovidMemoQuery.tsx";
+import BigDataCovidMemo from "./pages/BigDataCovidMemo/BigDataCovidMemo.tsx";
 
 const queryClient = new QueryClient();
 
