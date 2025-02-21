@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import Ul from "../comp/imageFeedUl";
 
 export type articleType = {
-  id: string;
+  id: number;
   author: string;
   width: number;
   height: number;
@@ -11,7 +11,7 @@ export type articleType = {
 };
 
 function ImageFeed() {
-  const [entries, setEntries] = useState<articleType[]>([]);
+  const [entriess, setEntries] = useState<articleType[]>([]);
   const [page, setPage] = useState(1);
 
   const [error] = useState<string | null>(null);
@@ -30,17 +30,19 @@ function ImageFeed() {
   }
 
   const sentinelRef = useRef(null);
-
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+  };
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log("IntersectionObserver fired!", entries);
-
         if (entries[0].isIntersecting) {
           setPage((prevPage) => prevPage + 1);
         }
       },
-      { threshold: 1 }
+      { rootMargin: "0px", threshold: 0.1 }
     );
 
     if (sentinelRef.current) {
@@ -52,31 +54,19 @@ function ImageFeed() {
         observer.unobserve(sentinelRef.current);
       }
     };
-  }, [sentinelRef]);
+  }, [entriess]);
 
   useEffect(() => {
-    // const cachedData = localStorage.getItem("picsumImagesPagination");
-
-    // if (cachedData) {
-    //   setEntries(JSON.parse(cachedData));
-    //   return;
-    // }
-
-    const totalPages = 10;
+    const totalPages = 20;
     const randomPage = Math.floor(Math.random() * totalPages) + 1;
 
-    fetch(`https://picsum.photos/v2/list?page=${randomPage}&limit=100`)
+    fetch(`https://picsum.photos/v2/list?page=${randomPage}&limit=200`)
       .then((resp) => resp.json())
       .then((data) => {
         try {
           if (data) {
             const newData: articleType[] = shuffleArray(data);
             setEntries((prev) => [...prev, ...newData]);
-
-            // localStorage.setItem(
-            //   "picsumImagesPagination",
-            //   JSON.stringify(entries)
-            // );
           }
         } catch (e) {
           console.log(e);
@@ -88,7 +78,7 @@ function ImageFeed() {
     return <div>{error}</div>;
   }
 
-  if (entries.length === 0) {
+  if (entriess.length === 0) {
     return (
       <>
         <h2>Loading...</h2>;
@@ -96,14 +86,22 @@ function ImageFeed() {
     );
   }
 
-  console.log(page);
+  console.log("Page: " + page);
+  console.log(entriess[0].id);
 
   return (
     <div>
       <h1>Slumpmässiga bilder från Unsplash</h1>
 
-      <Ul list={entries} sentinelRef={sentinelRef} />
-      <div style={{ height: "200px" }}></div>
+      <Ul list={entriess} />
+      <div
+        ref={sentinelRef}
+        style={{
+          height: "300px",
+          width: "60%",
+          marginLeft: "40px",
+        }}
+      ></div>
     </div>
   );
 }

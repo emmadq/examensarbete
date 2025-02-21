@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import BigDataCovid from "./pages/BigDataCovid.tsx";
 import ImageFeed from "./pages/ImageFeed.tsx";
-import ImageFeedLazy from "./pages/ImageFeed copy.tsx";
+import ImageFeedLazy from "./pages/ImageFeedLazyRmemo.tsx";
 
 import Statistics from "./pages/Statistics.tsx";
 
@@ -17,8 +17,10 @@ const queryClient = new QueryClient();
 const AppL = lazy(() => import("./App.tsx"));
 const BigDataCovidL = lazy(() => import("./pages/BigDataCovid.tsx"));
 const ImageFeedL = lazy(() => import("./pages/ImageFeed.tsx"));
-const ImageFeedLazyL = lazy(() => import("./pages/ImageFeed copy.tsx"));
-const ImageFeedPagination = lazy(() => import("./pages/ImageFeed copy 2.tsx"));
+const ImageFeedLazyL = lazy(() => import("./pages/ImageFeedLazyRmemo.tsx"));
+const ImageFeedPaginationL = lazy(
+  () => import("./pages/ImageFeedInfScroll.tsx")
+);
 
 const StatisticsL = lazy(() => import("./pages/Statistics.tsx"));
 const BigDataCovidPaginationL = lazy(

@@ -1,13 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-
-export type articleType = {
-  id: string;
-  author: string;
-  width: number;
-  height: number;
-  url: string;
-  download_url: string;
-};
+import { articleType } from "./ImageFeedInfScroll";
+import UlComp from "../comp/imageFeedUl";
 
 const UlCompLazy = lazy(() => import("../comp/imageFeedUl"));
 
@@ -32,7 +25,10 @@ function ImageFeed() {
     const cachedData = localStorage.getItem("picsumImages");
 
     if (cachedData) {
-      setEntries(JSON.parse(cachedData));
+      const data: articleType[] = JSON.parse(cachedData);
+      data.length > 0
+        ? setEntries(data)
+        : console.log("entries not set by localstorage");
       return;
     }
 
@@ -44,9 +40,10 @@ function ImageFeed() {
       .then((data) => {
         try {
           if (data) {
-            setEntries(shuffleArray(data));
-
-            localStorage.setItem("picsumImages", JSON.stringify(entries));
+            const list: articleType[] = shuffleArray(data);
+            console.log("nu kör sätt entries" + list);
+            localStorage.setItem("picsumImages", JSON.stringify(list));
+            setEntries(list);
           }
         } catch (e) {
           console.log(e);
@@ -69,8 +66,7 @@ function ImageFeed() {
   return (
     <div>
       <h1>Slumpmässiga bilder från Unsplash</h1>
-
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         <UlCompLazy list={entries} />
       </Suspense>
     </div>

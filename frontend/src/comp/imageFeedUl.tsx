@@ -1,18 +1,25 @@
 import Paper from "@mui/material/Paper";
-import { articleType } from "../pages/ImageFeed copy";
+import { articleType } from "../pages/ImageFeedInfScroll";
 import React from "react";
 
 interface UlProps {
   list: articleType[];
-  sentinelRef?: React.RefObject<HTMLDivElement>;
 }
 
-function Ul({ list, sentinelRef }: UlProps) {
+function Ul({ list }: UlProps) {
+  console.log("list fired!");
   return (
-    <>
-      <ul>
-        {list.map((e) => (
-          <li key={e.id + "-" + e.author} style={{ listStyleType: "none" }}>
+    <div
+      style={{
+        display: "flex",
+
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <ul style={{ display: "block" }}>
+        {list.map((e, index) => (
+          <li key={index + e.id} style={{ listStyleType: "none" }}>
             <Paper elevation={10}>
               <br />
               <h2>{e.author}</h2>
@@ -40,11 +47,7 @@ function Ul({ list, sentinelRef }: UlProps) {
           </li>
         ))}
       </ul>
-      <div
-        ref={sentinelRef}
-        style={{ height: "200px", backgroundColor: "red" }}
-      ></div>
-    </>
+    </div>
   );
 }
 
