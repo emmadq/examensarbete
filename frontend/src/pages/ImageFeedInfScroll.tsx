@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import Ul from "../comp/imageFeedUl";
+import Base from "./ImageFeed";
 
 export type articleType = {
   id: number;
@@ -10,7 +11,7 @@ export type articleType = {
   download_url: string;
 };
 
-function ImageFeed() {
+function ImageFeedInfScroll() {
   const [entriess, setEntries] = useState<articleType[]>([]);
   const [page, setPage] = useState(1);
 
@@ -90,20 +91,28 @@ function ImageFeed() {
   console.log(entriess[0].id);
 
   return (
-    <div>
-      <h1>Slumpmässiga bilder från Unsplash</h1>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+      }}
+    >
+      <div>
+        <h1>Infinite Scroll Component</h1>
 
-      <Ul list={entriess} />
-      <div
-        ref={sentinelRef}
-        style={{
-          height: "300px",
-          width: "60%",
-          marginLeft: "40px",
-        }}
-      ></div>
+        <Ul list={entriess} />
+        <div
+          ref={sentinelRef}
+          style={{
+            height: "300px",
+            width: "60%",
+            marginLeft: "40px",
+          }}
+        ></div>
+      </div>
     </div>
   );
 }
 
-export default ImageFeed;
+export default ImageFeedInfScroll;

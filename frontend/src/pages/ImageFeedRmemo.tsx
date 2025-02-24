@@ -1,11 +1,8 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { articleType } from "./ImageFeedInfScroll";
 import UlComp from "../comp/imageFeedUl";
-import Base from "./ImageFeed";
 
-const UlCompLazy = lazy(() => import("../comp/imageFeedUl"));
-
-function ImageFeedLazyRmemo() {
+function ImageFeedRmemo() {
   const [entries, setEntries] = useState<articleType[]>([]);
   const [error] = useState<string | null>(null);
 
@@ -23,7 +20,7 @@ function ImageFeedLazyRmemo() {
   }
 
   useEffect(() => {
-    const cachedData = localStorage.getItem("picsumImagesLazy");
+    const cachedData = localStorage.getItem("picsumImages");
 
     if (cachedData) {
       const data: articleType[] = JSON.parse(cachedData);
@@ -43,7 +40,7 @@ function ImageFeedLazyRmemo() {
           if (data) {
             const list: articleType[] = shuffleArray(data);
             console.log("nu kör sätt entries" + list);
-            localStorage.setItem("picsumImagesLazy", JSON.stringify(list));
+            localStorage.setItem("picsumImages", JSON.stringify(list));
             setEntries(list);
           }
         } catch (e) {
@@ -65,21 +62,11 @@ function ImageFeedLazyRmemo() {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-      }}
-    >
-      <div>
-        <h1>Lazy load and React Memo List</h1>
-        <Suspense>
-          <UlCompLazy list={entries} />
-        </Suspense>
-      </div>
+    <div>
+      <h1>React memo list</h1>
+      <UlComp list={entries} />
     </div>
   );
 }
 
-export default ImageFeedLazyRmemo;
+export default ImageFeedRmemo;

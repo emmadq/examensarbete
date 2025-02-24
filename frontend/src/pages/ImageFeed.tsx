@@ -1,7 +1,7 @@
 import { Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 
-function ImageFeedWiki() {
+function ImageFeed() {
   type articleType = {
     id: string;
     author: string;
@@ -57,7 +57,7 @@ function ImageFeedWiki() {
 
   return (
     <div>
-      <h1>Slumpmässiga bilder från Unsplash</h1>
+      <h1>Base list</h1>
 
       <ul>
         {entries.map((e) => (
@@ -93,4 +93,4 @@ function ImageFeedWiki() {
   );
 }
 
-export default ImageFeedWiki;
+export default ImageFeed;
