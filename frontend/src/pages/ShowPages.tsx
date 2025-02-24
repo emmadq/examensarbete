@@ -2,6 +2,7 @@ import Base from "./ImageFeed";
 import LazyRmemo from "./ImageFeedLazyRmemo";
 import Rmemo from "./ImageFeedRmemo";
 import InfScroll from "./ImageFeedInfScroll";
+import RmemoCallbackMemo from "./ImageFeedCallbackMemo";
 import { useState } from "react";
 
 function ShowImageFeed() {
@@ -31,6 +32,7 @@ function ShowImageFeed() {
       >
         <Base />
         <Rmemo />
+        <RmemoCallbackMemo />
         <LazyRmemo />
         <InfScroll />
       </div>
