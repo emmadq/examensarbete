@@ -1,26 +1,36 @@
+import { useCallback } from "react";
+
 interface CovidData {
   state: string;
   positive: number;
   id: number;
 }
-interface BigDataCovidTableNoMemoProps {
+interface BigDataCovidTableMemoProps {
   order: boolean;
   dataset: CovidData[];
 }
 
-const BigDataCovidTableNoMemo = ({
+const BigDataCovidTableCallBack = ({
   order,
   dataset,
-}: BigDataCovidTableNoMemoProps) => {
-  const sortedDataNoMemo = () => {
-    console.time("no useMemo sort");
-    const sorted = [...dataset].sort((a, b) =>
-      order ? b.positive - a.positive : a.positive - b.positive
-    );
-    console.timeEnd("no useMemo sort");
+}: BigDataCovidTableMemoProps) => {
+  const sortedDataCallbackAsc = useCallback(() => {
+    console.time("useMemo sort");
+    const sorted = [...dataset].sort((a, b) => b.positive - a.positive);
+    console.timeEnd("useMemo sort");
     return sorted;
-  };
+  }, [dataset]);
 
+  const sortedDataCallbackDesc = useCallback(() => {
+    console.time("useMemo sort");
+    const sorted = [...dataset].sort((a, b) => a.positive - b.positive);
+    console.timeEnd("useMemo sort");
+    return sorted;
+  }, [dataset]);
+
+  const sortedDataMemo = order
+    ? sortedDataCallbackAsc()
+    : sortedDataCallbackDesc();
   console.log("RE-RENDER ");
 
   return (
@@ -35,7 +45,7 @@ const BigDataCovidTableNoMemo = ({
         }}
       >
         <div>
-          <h3>Without useMemo</h3>
+          <h3>With useCallback</h3>
           <table>
             <thead>
               <tr>
@@ -44,7 +54,7 @@ const BigDataCovidTableNoMemo = ({
               </tr>
             </thead>
             <tbody>
-              {sortedDataNoMemo().map((item, index) => (
+              {sortedDataMemo?.map((item, index) => (
                 <tr key={index}>
                   <th>{item.state}</th>
                   <th>{item.positive}</th>
@@ -57,4 +67,4 @@ const BigDataCovidTableNoMemo = ({
     </>
   );
 };
-export default BigDataCovidTableNoMemo;
+export default BigDataCovidTableCallBack;

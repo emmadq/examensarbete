@@ -52,8 +52,8 @@ const BigDataCovidTableMemo = ({
               </tr>
             </thead>
             <tbody>
-              {sortedDataMemo?.map((item) => (
-                <tr key={item.id}>
+              {sortedDataMemo?.map((item, index) => (
+                <tr key={index}>
                   <th>{item.state}</th>
                   <th>{item.positive}</th>
                 </tr>

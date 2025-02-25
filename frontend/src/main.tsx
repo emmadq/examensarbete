@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import BigDataCovidQuery from "./pages/BigDataCovidQuery.tsx";
 import { BigDataCovidMemoQuery } from "./pages/BigDataCovidMemoQuery.tsx";
 import BigDataCovidMemo from "./pages/BigDataCovidMemo/BigDataCovidMemo.tsx";
+import BigDataCovidCallback from "./pages/BigDataCovidCallback/BigDataCovidCallback.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/coviddatamemo" element={<BigDataCovidMemo />} />
           <Route path="/coviddataquery" element={<BigDataCovidQuery />} />
+          <Route path="/covidcallback" element={<BigDataCovidCallback />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

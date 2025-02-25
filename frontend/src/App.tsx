@@ -10,6 +10,8 @@ function App() {
       <br />
       <Link to="/coviddatamemo">Covid data Memo</Link>
       <br />
+      <Link to="/covidcallback">Covid data callback</Link>
+      <br />
       <Link to="/coviddatamq">Covid data Memo Query</Link>
       <br />
       <Link to="/coviddataquery">Covid data Query</Link>

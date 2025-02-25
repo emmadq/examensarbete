@@ -8,7 +8,7 @@ interface BigDataCovidTableNoMemoProps {
   dataset: CovidData[];
 }
 
-const BigDataCovidTableNoMemo = ({
+const BigDataCovidTableNoCallback = ({
   order,
   dataset,
 }: BigDataCovidTableNoMemoProps) => {
@@ -35,7 +35,7 @@ const BigDataCovidTableNoMemo = ({
         }}
       >
         <div>
-          <h3>Without useMemo</h3>
+          <h3>Without useCallback</h3>
           <table>
             <thead>
               <tr>
@@ -57,4 +57,4 @@ const BigDataCovidTableNoMemo = ({
     </>
   );
 };
-export default BigDataCovidTableNoMemo;
+export default BigDataCovidTableNoCallback;
