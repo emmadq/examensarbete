@@ -8,6 +8,10 @@ function App() {
       <br />
       <Link to="/coviddatapagination">Covid data with pagination</Link>
       <br />
+      <Link to="/coviddatalocalstorage">
+        Covid data with queries & caching to localstorage
+      </Link>
+      <br />
       <Link to="/wikiarticle">Wiki articles</Link>
       <br />
       <Link to="/statistics">Statistics</Link>

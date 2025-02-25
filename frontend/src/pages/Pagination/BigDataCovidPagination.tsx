@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  Collapse,
-  ListItemButton,
-  TablePagination,
-} from "@mui/material";
+import StandalonePlain from "./StandalonePlain";
+import Pagination from "./Pagination";
 
 interface CovidData {
   state: string;
   positive: number;
+  id: number;
 }
 
 const stateAbbreviations: { [key: string]: string } = {
@@ -76,8 +70,7 @@ const stateAbbreviations: { [key: string]: string } = {
 export default function BigDataCovidPagination() {
   const [dataset, setDataset] = useState<CovidData[]>([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [openState, setOpenState] = useState<string | null>(null);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,53 +110,19 @@ export default function BigDataCovidPagination() {
   );
 
   const allStates = Object.keys(groupedData);
-  const pagedStates = allStates.slice(
-    page * rowsPerPage,
-    (page + 1) * rowsPerPage
-  );
-
-  const handleStateToggle = (state: string) => {
-    setOpenState(openState === state ? null : state);
-  };
 
   return (
-    <>
-      <Paper>
-        <List>
-          {pagedStates.map((state) => (
-            <div key={state}>
-              <ListItemButton onClick={() => handleStateToggle(state)}>
-                <ListItemText primary={stateAbbreviations[state] || state} />
-              </ListItemButton>
-              <Collapse in={openState === state} timeout="auto" unmountOnExit>
-                <List>
-                  {groupedData[state].map((item, index) => (
-                    <ListItem key={state + item.positive + index}>
-                      <ListItemText primary={`Positives: ${item.positive}`} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Collapse>
-            </div>
-          ))}
-        </List>
-      </Paper>
-
-      <TablePagination
-        sx={{
-          "& .MuiTablePagination-select, & .MuiTablePagination-input, & .MuiTablePagination-toolbar":
-            {
-              color: "white",
-            },
-        }}
-        rowsPerPageOptions={[10, 25]}
-        component="div"
-        count={allStates.length}
-        rowsPerPage={rowsPerPage}
+    <div style={{ display: "flex", gap: "14px" }}>
+      <Pagination
+        groupedData={groupedData}
+        allStates={allStates}
         page={page}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        rowsPerPage={rowsPerPage}
+        handlePageChange={handlePageChange}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+        stateAbbreviations={stateAbbreviations}
       />
-    </>
+      <StandalonePlain dataset={dataset} />
+    </div>
   );
 }
