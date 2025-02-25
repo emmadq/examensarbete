@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import BigDataCovidTableNoCallback from "./BigDataCovidTableNoCallback";
 import BigDataCovidTableCallBack from "./BigDataCovidTableCallback";
+import StandaloneCallback from "./StandaloneCallback";
+import StandalonePlain from "./StandalonePlain";
+import { useSearchParams } from "react-router";
 
 interface CovidData {
   state: string;
@@ -10,7 +13,8 @@ interface CovidData {
 const BigDataCovidCallback = () => {
   const [order, setOrder] = useState<boolean>(false);
   const [dataset, setDataset] = useState<CovidData[]>([]);
-
+  const [searchParams] = useSearchParams();
+  const version = searchParams.get("version") || "plain";
   const toggleOrder = () => {
     setOrder((prev) => !prev);
     console.log("\n");
@@ -28,14 +32,37 @@ const BigDataCovidCallback = () => {
 
     fetchData();
   }, []);
-  return (
-    <>
-      <button onClick={toggleOrder}>Toggle sorting</button>
-      <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
-        <BigDataCovidTableNoCallback order={order} dataset={dataset} />
-        <BigDataCovidTableCallBack order={order} dataset={dataset} />
-      </div>
-    </>
-  );
+  if (version === "comparison")
+    return (
+      <>
+        <h3>Comparison</h3>
+        <button onClick={toggleOrder}>Toggle sorting</button>
+        <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
+          <BigDataCovidTableNoCallback order={order} dataset={dataset} />
+          <BigDataCovidTableCallBack order={order} dataset={dataset} />
+        </div>
+      </>
+    );
+  else if (version === "standalone") {
+    return (
+      <>
+        <h3>Callback standalone</h3>
+
+        <button onClick={toggleOrder}>Toggle sorting</button>
+        <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
+          <StandaloneCallback order={order} dataset={dataset} />
+        </div>
+      </>
+    );
+  } else
+    return (
+      <>
+        <h3>Plain</h3>
+        <button onClick={toggleOrder}>Toggle sorting</button>
+        <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
+          <StandalonePlain order={order} dataset={dataset} />
+        </div>
+      </>
+    );
 };
 export default BigDataCovidCallback;

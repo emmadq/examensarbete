@@ -25,7 +25,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/coviddatamq" element={<BigDataCovidMemoQuery />} />
           <Route path="/wikiarticle" element={<ImageFeedWiki />} />
           <Route path="/statistics" element={<Statistics />} />
-          <Route path="/coviddatamemo" element={<BigDataCovidMemo />} />
+          <Route path="/covidmemo" element={<BigDataCovidMemo />} />
           <Route path="/coviddataquery" element={<BigDataCovidQuery />} />
           <Route path="/covidcallback" element={<BigDataCovidCallback />} />
         </Routes>
