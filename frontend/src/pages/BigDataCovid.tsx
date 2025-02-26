@@ -1,5 +1,4 @@
 import { useMemo, useEffect, useState } from "react";
-
 interface CovidData {
   state: string;
   positive: number;
