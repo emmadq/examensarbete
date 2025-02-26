@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import { useEffect, useState } from "react";
-=======
 import { useMemo, useEffect, useState } from "react";
->>>>>>> 6a4350dc8542daf970c3d255417fee3159ce5672
-
 interface CovidData {
   state: string;
   positive: number;
