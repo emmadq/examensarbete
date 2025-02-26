@@ -1,11 +1,12 @@
 import Paper from "@mui/material/Paper";
 import { articleType } from "../pages/ImageFeedInfScroll";
+import React from "react";
 
 interface UlProps {
   list: articleType[];
 }
 
-function Ul({ list }: UlProps) {
+function UlRmemo({ list }: UlProps) {
   return (
     <ul
       style={{
@@ -47,4 +48,4 @@ function Ul({ list }: UlProps) {
   );
 }
 
-export default Ul;
+export default React.memo(UlRmemo);
