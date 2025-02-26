@@ -84,6 +84,12 @@ const ImageFeedInfScrollCallbackL = lazy(
 
 const StatisticsL = lazy(() => import("./pages/Statistics.tsx"));
 
+const BigDataCovidReactMemoL = lazy(
+  () => import("./pages/QueryReactMemo/BigDataCovidReactMemo.tsx")
+);
+const QueryComparisonL = lazy(
+  () => import("./pages/QueryReactMemo/QueryComparison.tsx")
+);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <PersistQueryClientProvider
@@ -96,9 +102,15 @@ createRoot(document.getElementById("root")!).render(
             <Routes>
               <Route index element={<AppL />} />
               <Route path="/coviddata" element={<BigDataCovidL />} />
-              <Route path="/coviddatamq" element={<BigDataCovidMemoQueryL />} />
               <Route path="/covidmemo" element={<BigDataCovidMemoL />} />
+
+              <Route
+                path="/covidreactmemo"
+                element={<BigDataCovidReactMemoL />}
+              />
+              <Route path="/coviddatamq" element={<BigDataCovidMemoQueryL />} />
               <Route path="/coviddataquery" element={<BigDataCovidQueryL />} />
+              <Route path="/querycomparison" element={<QueryComparisonL />} />
               <Route
                 path="/covidcallback"
                 element={<BigDataCovidCallbackL />}

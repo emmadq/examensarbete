@@ -62,6 +62,21 @@ function App() {
         <> </>
       )}
 
+      <h4 onClick={() => openLinks("querymemo")}>Covid data with pagination</h4>
+      {openLink === "querymemo" ? (
+        <>
+          <Link to="/covidreactmemo">With React.memo</Link>
+          <br />
+          <Link to="/coviddatamq">With React.memo + useQuery</Link>
+          <br />
+          <Link to="/coviddataquery">With useQuery</Link>
+          <br />
+          <Link to="/querycomparison">Comparison</Link>
+        </>
+      ) : (
+        <> </>
+      )}
+
       <Link to="/coviddata">Covid data</Link>
       <br />
       {/* <Link to="/coviddatamemo">Covid data Memo</Link>
