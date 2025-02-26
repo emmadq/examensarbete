@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { articleType } from "./ImageFeedInfScroll";
 import UlComp from "../comp/imageFeedUlRmemo";
 import useShuffleArray from "../comp/shuffleArray";

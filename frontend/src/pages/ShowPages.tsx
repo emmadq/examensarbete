@@ -21,7 +21,7 @@ function ShowImageFeed() {
 
   return (
     <>
-      <button onClick={handleClick}>Rerender</button>
+      <button onClick={handleClick}>Rerender {counter}</button>
       <button onClick={handleClick2}>Clear localStorage</button>
 
       <div
