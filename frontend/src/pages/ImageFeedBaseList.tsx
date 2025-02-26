@@ -56,7 +56,14 @@ function ImageFeedBaseList() {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <h1>Base list</h1>
 
       <ul>

@@ -71,8 +71,6 @@ function App() {
       <br />
       <Link to="/coviddataquery">Covid data Query</Link>
       <br />
-      <Link to="/wikiarticle">Wiki articles</Link>
-      <br />
       <Link to="/ShowImageFeed">Picture feed Test</Link>
       <br />
       <Link to="/article">Picture feed</Link>
