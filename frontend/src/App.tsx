@@ -51,11 +51,11 @@ function App() {
       </h4>
       {openLink === "pagination" ? (
         <>
-          <Link to="/coviddatapagination">With Pagination</Link>
+          <Link to="/coviddatapaginationstandalone">With Pagination</Link>
           <br />
           <Link to="/coviddatanopagination">No Pagination</Link>
           <br />
-          <Link to="/paginationcomparison">Comparison</Link>
+          <Link to="/BigDataCovidPaginationL">Comparison</Link>
           <br />
         </>
       ) : (
@@ -64,13 +64,12 @@ function App() {
 
       <Link to="/coviddata">Covid data</Link>
       <br />
-      <Link to="/coviddatamemo">Covid data Memo</Link>
-      <br />
+      {/* <Link to="/coviddatamemo">Covid data Memo</Link>
       <br />
       <Link to="/coviddatamq">Covid data Memo Query</Link>
       <br />
       <Link to="/coviddataquery">Covid data Query</Link>
-      <br />
+      <br /> */}
       <Link to="/ShowImageFeed">Picture feed Test</Link>
       <br />
       <Link to="/article">Picture feed</Link>
@@ -80,7 +79,6 @@ function App() {
       <Link to="/articleRmemoCallbMemo">
         Picture feed react.memo, callback and memo
       </Link>
-
       <br />
       <Link to="/articleLazy">Picture feed Lazy loading</Link>
       <br />

@@ -112,11 +112,11 @@ createRoot(document.getElementById("root")!).render(
                 element={<BigDataCovidLocalStorageL />}
               />
               <Route
-                path="/coviddatalocalstorage"
+                path="/coviddatanopagination"
                 element={<NoPaginationStandaloneL />}
               />
               <Route
-                path="/coviddatalocalstorage"
+                path="/coviddatapaginationstandalone"
                 element={<PaginationStandaloneL />}
               />
               <Route path="/ShowImageFeed" element={<ImageFeedShowL />} />
