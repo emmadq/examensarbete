@@ -12,6 +12,8 @@ import "./index.css";
 // import BigDataCovidMemo from "./pages/BigDataCovidMemo/BigDataCovidMemo.tsx";
 // import BigDataCovidCallback from "./pages/BigDataCovidCallback/BigDataCovidCallback.tsx";
 // import BigDataCovid from "./pages/BigDataCovid.tsx";
+// import NoPaginationStandalone from "./pages/Pagination/NoPaginationStandalone.tsx";
+// import PaginationStandalone from "./pages/Pagination/PaginationStandalone.tsx";
 
 import Nav from "./pages/Nav.tsx";
 
@@ -60,6 +62,12 @@ const BigDataCovidCallbackL = lazy(
 const BigDataCovidPaginationL = lazy(
   () => import("./pages/Pagination/BigDataCovidPagination.tsx")
 );
+const NoPaginationStandaloneL = lazy(
+  () => import("./pages/Pagination/NoPaginationStandalone.tsx")
+);
+const PaginationStandaloneL = lazy(
+  () => import("./pages/Pagination/PaginationStandalone.tsx")
+);
 const ImageFeedShowL = lazy(() => import("./pages/ShowPages.tsx"));
 const ImageFeedL = lazy(() => import("./pages/ImageFeedBaseList.tsx"));
 const ImageFeedRmemoL = lazy(() => import("./pages/ImageFeedRmemo.tsx"));
@@ -102,6 +110,14 @@ createRoot(document.getElementById("root")!).render(
               <Route
                 path="/coviddatalocalstorage"
                 element={<BigDataCovidLocalStorageL />}
+              />
+              <Route
+                path="/coviddatalocalstorage"
+                element={<NoPaginationStandaloneL />}
+              />
+              <Route
+                path="/coviddatalocalstorage"
+                element={<PaginationStandaloneL />}
               />
               <Route path="/ShowImageFeed" element={<ImageFeedShowL />} />
               <Route path="/article" element={<ImageFeedL />} />
