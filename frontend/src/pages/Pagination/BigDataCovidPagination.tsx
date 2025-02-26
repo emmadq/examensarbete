@@ -85,7 +85,7 @@ export default function BigDataCovidPagination() {
   }, []);
 
   const handlePageChange = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
+    _event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
     setPage(newPage);

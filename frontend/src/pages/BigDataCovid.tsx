@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Paper,
   Table,
@@ -8,45 +9,104 @@ import {
   TableRow,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+=======
+import { useMemo, useEffect, useState } from "react";
+>>>>>>> 6a4350dc8542daf970c3d255417fee3159ce5672
 
 interface CovidData {
   state: string;
   positive: number;
+  id: number;
 }
+
 export default function BigDataCovid() {
   const [dataset, setDataset] = useState<CovidData[]>([]);
+  const [order, setOrder] = useState<boolean>(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
         "https://api.covidtracking.com/v1/states/daily.json"
       );
-
       const data: CovidData[] = await response.json();
       setDataset(data);
     };
 
     fetchData();
   }, []);
+
+  const toggleOrder = () => {
+    setOrder((prev) => !prev);
+    console.log("\n");
+  };
+  const sortedDataNoMemo = () => {
+    console.time("no useMemo sort");
+    const sorted = [...dataset].sort((a, b) =>
+      order ? b.positive - a.positive : a.positive - b.positive
+    );
+    console.timeEnd("no useMemo sort");
+    return sorted;
+  };
+  const sortedDataMemoAsc = useMemo(() => {
+    console.time("useMemo sort");
+    const sorted = [...dataset].sort((a, b) => b.positive - a.positive);
+    console.timeEnd("useMemo sort");
+    return sorted;
+  }, [dataset]);
+
+  const sortedDataMemoDesc = useMemo(() => {
+    console.time("useMemo sort");
+    const sorted = [...dataset].sort((a, b) => a.positive - b.positive);
+    console.timeEnd("useMemo sort");
+    return sorted;
+  }, [dataset]);
+
+  const sortedDataMemo = order ? sortedDataMemoAsc : sortedDataMemoDesc;
+  console.log("RE-RENDER ");
+
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>State</TableCell>
-              <TableCell>Positives</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {dataset.map((item) => (
-              <TableRow key={item.state + item.positive}>
-                <TableCell>{item.state}</TableCell>
-                <TableCell>{item.positive}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <button onClick={toggleOrder}>Toggle Sort Order</button>
+      <div style={{ display: "flex", gap: "5px" }}>
+        <div>
+          <h3>With useMemo</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>State</th>
+                <th>Positives</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedDataMemo?.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.state}</td>
+                  <td>{item.positive}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Without useMemo</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>State</th>
+                <th>Positives</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedDataNoMemo().map((item) => (
+                <tr key={item.id}>
+                  <td>{item.state}</td>
+                  <td>{item.positive}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   );
 }
