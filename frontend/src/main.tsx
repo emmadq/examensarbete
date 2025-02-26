@@ -25,6 +25,8 @@ import {
   PersistQueryClientProvider,
 } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import NoPaginationStandalone from "./pages/Pagination/NoPaginationStandalone.tsx";
+import PaginationStandalone from "./pages/Pagination/PaginationStandalone.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -83,8 +85,17 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/covidcallback" element={<BigDataCovidCallback />} />
               <Route index element={<AppL />} />
               <Route path="/coviddata" element={<BigDataCovidL />} />
+
               <Route
                 path="/coviddatapagination"
+                element={<PaginationStandalone />}
+              />
+              <Route
+                path="/coviddatanopagination"
+                element={<NoPaginationStandalone />}
+              />
+              <Route
+                path="/paginationcomparison"
                 element={<BigDataCovidPagination />}
               />
               <Route
