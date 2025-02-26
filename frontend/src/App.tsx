@@ -46,6 +46,21 @@ function App() {
       ) : (
         <> </>
       )}
+      <h4 onClick={() => openLinks("pagination")}>
+        Covid data with pagination{" "}
+      </h4>
+      {openLink === "pagination" ? (
+        <>
+          <Link to="/coviddatapagination">With Pagination</Link>
+          <br />
+          <Link to="/coviddatanopagination">No Pagination</Link>
+          <br />
+          <Link to="/paginationcomparison">Comparison</Link>
+          <br />
+        </>
+      ) : (
+        <> </>
+      )}
 
       <Link to="/coviddata">Covid data</Link>
       <br />
@@ -56,12 +71,7 @@ function App() {
       <br />
       <Link to="/coviddataquery">Covid data Query</Link>
       <br />
-      <Link to="/coviddatalocalstorage">
-        Covid data with queries & caching to localstorage
-      </Link>
-      <br />
       <Link to="/wikiarticle">Wiki articles</Link>
-      <Link to="/coviddatapagination">Covid data with pagination</Link>
       <br />
       <Link to="/ShowImageFeed">Picture feed Test</Link>
       <br />
