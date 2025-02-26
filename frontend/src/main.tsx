@@ -1,17 +1,17 @@
 import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
-import BigDataCovid from "./pages/BigDataCovid.tsx";
-import ImageFeed from "./pages/ImageFeedBaseList.tsx";
-import ImageFeedLazy from "./pages/ImageFeedLazyRmemo.tsx";
+// import App from "./App.tsx";
+// import BigDataCovid from "./pages/BigDataCovid.tsx";
+// import ImageFeed from "./pages/ImageFeedBaseList.tsx";
+// import ImageFeedLazy from "./pages/ImageFeedLazyRmemo.tsx";
 import Nav from "./pages/Nav.tsx";
 
-import Statistics from "./pages/Statistics.tsx";
+// import Statistics from "./pages/Statistics.tsx";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router";
-import BigDataCovidPagination from "./pages/BigDataCovidPagination.tsx";
+// import BigDataCovidPagination from "./pages/BigDataCovidPagination.tsx";
 
 const queryClient = new QueryClient();
 

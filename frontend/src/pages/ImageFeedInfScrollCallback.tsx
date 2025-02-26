@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Ul from "../comp/imageFeedUlRmemo";
 import useShuffleArray from "../comp/shuffleArray";
 
@@ -19,11 +19,11 @@ function ImageFeedInfScrollCallback() {
   const shuffleArray = useShuffleArray<articleType>();
 
   const sentinelRef = useRef(null);
-  const options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.5,
-  };
+  // const options = {
+  //   root: null,
+  //   rootMargin: "0px",
+  //   threshold: 0.5,
+  // };
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
