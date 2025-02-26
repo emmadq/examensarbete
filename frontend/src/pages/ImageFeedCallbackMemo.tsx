@@ -1,19 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { articleType } from "./ImageFeedInfScroll";
-import UlComp from "../comp/imageFeedUl";
+import UlComp from "../comp/imageFeedUlRmemo";
+import useShuffleArray from "../comp/shuffleArray";
 
-function ImageFeedCallbakcMemo() {
+function ImageFeedCallbackMemo() {
   const [entries, setEntries] = useState<articleType[]>([]);
   const [error] = useState<string | null>(null);
 
-  const shuffleArray = useCallback(<T,>(array: T[]): T[] => {
-    const newArr = [...array];
-    for (let i = newArr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-    }
-    return newArr.slice(0, 100);
-  }, []);
+  const shuffleArray = useShuffleArray<articleType>();
 
   const containerStyle: React.CSSProperties = useMemo(
     () => ({
@@ -76,4 +70,4 @@ function ImageFeedCallbakcMemo() {
   );
 }
 
-export default ImageFeedCallbakcMemo;
+export default ImageFeedCallbackMemo;

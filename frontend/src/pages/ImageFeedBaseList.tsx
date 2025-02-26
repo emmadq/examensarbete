@@ -1,7 +1,7 @@
 import { Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 
-function ImageFeed() {
+function ImageFeedBaseList() {
   type articleType = {
     id: string;
     author: string;
@@ -93,4 +93,4 @@ function ImageFeed() {
   );
 }
 
-export default ImageFeed;
+export default ImageFeedBaseList;

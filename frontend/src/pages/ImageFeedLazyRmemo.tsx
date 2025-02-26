@@ -1,9 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { articleType } from "./ImageFeedInfScroll";
-import UlComp from "../comp/imageFeedUl";
-import Base from "./ImageFeed";
 
-const UlCompLazy = lazy(() => import("../comp/imageFeedUl"));
+const UlCompLazy = lazy(() => import("../comp/imageFeedUlRmemo"));
 
 function ImageFeedLazyRmemo() {
   const [entries, setEntries] = useState<articleType[]>([]);

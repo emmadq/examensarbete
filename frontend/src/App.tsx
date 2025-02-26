@@ -23,6 +23,10 @@ function App() {
       <br />
       <Link to="/articleInfScroll">Picture feed infinite scroll</Link>
       <br />
+      <Link to="/articleInfScrollCallback">
+        Picture feed infinite scroll med callback
+      </Link>
+      <br />
       <Link to="/statistics">Statistics</Link>
     </>
   );

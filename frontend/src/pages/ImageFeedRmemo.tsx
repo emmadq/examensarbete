@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { articleType } from "./ImageFeedInfScroll";
-import UlComp from "../comp/imageFeedUl";
+import UlComp from "../comp/imageFeedUlRmemo";
+import React from "react";
 
 function ImageFeedRmemo() {
   const [entries, setEntries] = useState<articleType[]>([]);
@@ -69,4 +70,4 @@ function ImageFeedRmemo() {
   );
 }
 
-export default ImageFeedRmemo;
+export default React.memo(ImageFeedRmemo);

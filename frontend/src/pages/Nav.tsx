@@ -37,6 +37,9 @@ function Nav({ children }: { children: React.ReactNode }) {
         <Link to="/articleInfScroll" style={{ marginRight: "1rem" }}>
           Picture feed infinite scroll
         </Link>
+        <Link to="/articleInfScrollCallback" style={{ marginRight: "1rem" }}>
+          Picture feed infinite scroll med callback
+        </Link>
         <Link to="/statistics">Statistics</Link>
       </nav>
       <main>{children}</main>

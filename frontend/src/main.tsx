@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import BigDataCovid from "./pages/BigDataCovid.tsx";
-import ImageFeed from "./pages/ImageFeed.tsx";
+import ImageFeed from "./pages/ImageFeedBaseList.tsx";
 import ImageFeedLazy from "./pages/ImageFeedLazyRmemo.tsx";
 import Nav from "./pages/Nav.tsx";
 
@@ -18,14 +18,17 @@ const queryClient = new QueryClient();
 const AppL = lazy(() => import("./App.tsx"));
 const BigDataCovidL = lazy(() => import("./pages/BigDataCovid.tsx"));
 const ImageFeedShowL = lazy(() => import("./pages/ShowPages.tsx"));
-const ImageFeedL = lazy(() => import("./pages/ImageFeed.tsx"));
+const ImageFeedL = lazy(() => import("./pages/ImageFeedBaseList.tsx"));
 const ImageFeedRmemoL = lazy(() => import("./pages/ImageFeedRmemo.tsx"));
 const ImageFeedCallbaclMemoL = lazy(
   () => import("./pages/ImageFeedCallbackMemo.tsx")
 );
 const ImageFeedLazyL = lazy(() => import("./pages/ImageFeedLazyRmemo.tsx"));
-const ImageFeedPaginationL = lazy(
+const ImageFeedInfScrollL = lazy(
   () => import("./pages/ImageFeedInfScroll.tsx")
+);
+const ImageFeedInfScrollCallbackL = lazy(
+  () => import("./pages/ImageFeedInfScrollCallback.tsx")
 );
 
 const StatisticsL = lazy(() => import("./pages/Statistics.tsx"));
@@ -57,7 +60,11 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/articleLazy" element={<ImageFeedLazyL />} />
               <Route
                 path="/articleInfScroll"
-                element={<ImageFeedPaginationL />}
+                element={<ImageFeedInfScrollL />}
+              />
+              <Route
+                path="/articleInfScrollCallback"
+                element={<ImageFeedInfScrollCallbackL />}
               />
               <Route path="/statistics" element={<StatisticsL />} />
             </Routes>
