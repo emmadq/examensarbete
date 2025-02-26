@@ -5,19 +5,17 @@ import "./index.css";
 // import BigDataCovid from "./pages/BigDataCovid.tsx";
 // import ImageFeed from "./pages/ImageFeedBaseList.tsx";
 // import ImageFeedLazy from "./pages/ImageFeedLazyRmemo.tsx";
+// import Statistics from "./pages/Statistics.tsx";
+// import BigDataCovidLocalStorage from "./pages/LocalStorage/BigDataCovidLocalStorage.tsx";
+// import BigDataCovidQuery from "./pages/BigDataCovidQuery.tsx";
+// import BigDataCovidMemoQuery from "./pages/BigDataCovidMemoQuery.tsx";
+// import BigDataCovidMemo from "./pages/BigDataCovidMemo/BigDataCovidMemo.tsx";
+// import BigDataCovidCallback from "./pages/BigDataCovidCallback/BigDataCovidCallback.tsx";
+// import BigDataCovid from "./pages/BigDataCovid.tsx";
+
 import Nav from "./pages/Nav.tsx";
 
-// import Statistics from "./pages/Statistics.tsx";
-
 import { BrowserRouter, Routes, Route } from "react-router";
-
-import BigDataCovidLocalStorage from "./pages/LocalStorage/BigDataCovidLocalStorage.tsx";
-import BigDataCovidQuery from "./pages/BigDataCovidQuery.tsx";
-import { BigDataCovidMemoQuery } from "./pages/BigDataCovidMemoQuery.tsx";
-import BigDataCovidMemo from "./pages/BigDataCovidMemo/BigDataCovidMemo.tsx";
-import BigDataCovidCallback from "./pages/BigDataCovidCallback/BigDataCovidCallback.tsx";
-import BigDataCovid from "./pages/BigDataCovid.tsx";
-import Statistics from "./pages/Statistics.tsx";
 
 import { QueryClient } from "@tanstack/react-query";
 import {
@@ -46,6 +44,22 @@ persistQueryClient({
 
 const AppL = lazy(() => import("./App.tsx"));
 const BigDataCovidL = lazy(() => import("./pages/BigDataCovid.tsx"));
+const BigDataCovidLocalStorageL = lazy(
+  () => import("./pages/LocalStorage/BigDataCovidLocalStorage.tsx")
+);
+const BigDataCovidQueryL = lazy(() => import("./pages/BigDataCovidQuery.tsx"));
+const BigDataCovidMemoQueryL = lazy(
+  () => import("./pages/BigDataCovidMemoQuery.tsx")
+);
+const BigDataCovidMemoL = lazy(
+  () => import("./pages/BigDataCovidMemo/BigDataCovidMemo.tsx")
+);
+const BigDataCovidCallbackL = lazy(
+  () => import("./pages/BigDataCovidCallback/BigDataCovidCallback.tsx")
+);
+const BigDataCovidPaginationL = lazy(
+  () => import("./pages/Pagination/BigDataCovidPagination.tsx")
+);
 const ImageFeedShowL = lazy(() => import("./pages/ShowPages.tsx"));
 const ImageFeedL = lazy(() => import("./pages/ImageFeedBaseList.tsx"));
 const ImageFeedRmemoL = lazy(() => import("./pages/ImageFeedRmemo.tsx"));
@@ -61,9 +75,6 @@ const ImageFeedInfScrollCallbackL = lazy(
 );
 
 const StatisticsL = lazy(() => import("./pages/Statistics.tsx"));
-const BigDataCovidPagination = lazy(
-  () => import("./pages/Pagination/BigDataCovidPagination.tsx")
-);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -75,21 +86,22 @@ createRoot(document.getElementById("root")!).render(
         <Nav>
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-              <Route path="/coviddata" element={<BigDataCovid />} />
-              <Route path="/coviddatamq" element={<BigDataCovidMemoQuery />} />
-              <Route path="/statistics" element={<Statistics />} />
-              <Route path="/covidmemo" element={<BigDataCovidMemo />} />
-              <Route path="/coviddataquery" element={<BigDataCovidQuery />} />
-              <Route path="/covidcallback" element={<BigDataCovidCallback />} />
               <Route index element={<AppL />} />
               <Route path="/coviddata" element={<BigDataCovidL />} />
+              <Route path="/coviddatamq" element={<BigDataCovidMemoQueryL />} />
+              <Route path="/covidmemo" element={<BigDataCovidMemoL />} />
+              <Route path="/coviddataquery" element={<BigDataCovidQueryL />} />
+              <Route
+                path="/covidcallback"
+                element={<BigDataCovidCallbackL />}
+              />
               <Route
                 path="/coviddatapagination"
-                element={<BigDataCovidPagination />}
+                element={<BigDataCovidPaginationL />}
               />
               <Route
                 path="/coviddatalocalstorage"
-                element={<BigDataCovidLocalStorage />}
+                element={<BigDataCovidLocalStorageL />}
               />
               <Route path="/ShowImageFeed" element={<ImageFeedShowL />} />
               <Route path="/article" element={<ImageFeedL />} />

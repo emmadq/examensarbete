@@ -54,4 +54,4 @@ function BigDataCovidMQ() {
     </>
   );
 }
-export const BigDataCovidMemoQuery = React.memo(BigDataCovidMQ);
+export default React.memo(BigDataCovidMQ);
