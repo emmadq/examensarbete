@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Paper,
   Table,
@@ -24,11 +23,10 @@ const fetchDataset = async () => {
   return await response.json();
 };
 
-function BigDataCovidMQ() {
+function BigDataCovidQuery() {
   const datasetQuery = useQuery({
     queryKey: ["dataset"],
     queryFn: fetchDataset,
-    staleTime: 15 * 1000,
   });
   return (
     <>
@@ -54,4 +52,4 @@ function BigDataCovidMQ() {
     </>
   );
 }
-export default React.memo(BigDataCovidMQ);
+export default BigDataCovidQuery;

@@ -5,7 +5,7 @@ interface CovidData {
   id: number;
 }
 
-export default function BigDataCovid() {
+function BigDataCovid() {
   const [dataset, setDataset] = useState<CovidData[]>([]);
   const [order, setOrder] = useState<boolean>(false);
 
@@ -96,3 +96,5 @@ export default function BigDataCovid() {
     </>
   );
 }
+
+export default BigDataCovid;

@@ -46,23 +46,45 @@ function App() {
       ) : (
         <> </>
       )}
+      <h4 onClick={() => openLinks("pagination")}>
+        Covid data with pagination{" "}
+      </h4>
+      {openLink === "pagination" ? (
+        <>
+          <Link to="/coviddatapaginationstandalone">With Pagination</Link>
+          <br />
+          <Link to="/coviddatanopagination">No Pagination</Link>
+          <br />
+          <Link to="/BigDataCovidPaginationL">Comparison</Link>
+          <br />
+        </>
+      ) : (
+        <> </>
+      )}
+
+      <h4 onClick={() => openLinks("querymemo")}>Covid data with pagination</h4>
+      {openLink === "querymemo" ? (
+        <>
+          <Link to="/covidreactmemo">With React.memo</Link>
+          <br />
+          <Link to="/coviddatamq">With React.memo + useQuery</Link>
+          <br />
+          <Link to="/coviddataquery">With useQuery</Link>
+          <br />
+          <Link to="/querycomparison">Comparison</Link>
+        </>
+      ) : (
+        <> </>
+      )}
 
       <Link to="/coviddata">Covid data</Link>
       <br />
-      <Link to="/coviddatamemo">Covid data Memo</Link>
-      <br />
+      {/* <Link to="/coviddatamemo">Covid data Memo</Link>
       <br />
       <Link to="/coviddatamq">Covid data Memo Query</Link>
       <br />
       <Link to="/coviddataquery">Covid data Query</Link>
-      <br />
-      <Link to="/coviddatalocalstorage">
-        Covid data with queries & caching to localstorage
-      </Link>
-      <br />
-      <Link to="/wikiarticle">Wiki articles</Link>
-      <Link to="/coviddatapagination">Covid data with pagination</Link>
-      <br />
+      <br /> */}
       <Link to="/ShowImageFeed">Picture feed Test</Link>
       <br />
       <Link to="/article">Picture feed</Link>
@@ -72,7 +94,6 @@ function App() {
       <Link to="/articleRmemoCallbMemo">
         Picture feed react.memo, callback and memo
       </Link>
-
       <br />
       <Link to="/articleLazy">Picture feed Lazy loading</Link>
       <br />
