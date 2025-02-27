@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      'react-dom': path.resolve(__dirname, 'node_modules/react-dom/profiling'),
-      'scheduler/tracing': path.resolve(__dirname, 'node_modules/scheduler/tracing-profiling'),
+      'react-dom': path.resolve(process.cwd(), 'node_modules/react-dom/profiling'),
+      'scheduler/tracing': path.resolve(process.cwd(), 'node_modules/scheduler/tracing-profiling'),
     },
   },
 })
