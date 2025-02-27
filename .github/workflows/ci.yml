@@ -60,7 +60,7 @@ jobs:
       - name: Build
         run: |
           cd frontend
-          REACT_APP_PROFILING=true npm run build
+          npm run build -- --profile
 
       - name: Upload dist artifact
         uses: actions/upload-artifact@v4
