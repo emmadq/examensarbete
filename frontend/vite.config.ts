@@ -1,20 +1,16 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
 
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "react-dom$": path.resolve(
-        process.cwd(),
-        "node_modules/react-dom/profiling"
-      ),
+export default defineConfig(({ mode }) => {
+  const isProduction = mode === "production";
 
-      "scheduler/tracing": path.resolve(
-        process.cwd(),
-        "node_modules/scheduler/tracing-profiling"
-      ),
+  return {
+    resolve: {
+      alias: isProduction
+        ? { "react-dom/client": "react-dom/profiling" }
+        : ({} as Record<string, string>),
     },
-  },
+    define: {
+      "process.env.REACT_PROFILING": JSON.stringify(isProduction), // Enables profiling mode
+    },
+  };
 });
