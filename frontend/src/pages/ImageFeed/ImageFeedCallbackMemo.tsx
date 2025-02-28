@@ -1,27 +1,25 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { articleType } from "./ImageFeedInfScroll";
+import UlComp from "../../comp/imageFeedUlRmemo";
+import useShuffleArray from "../../comp/shuffleArray";
 
-const UlCompLazy = lazy(() => import("../comp/imageFeedUlRmemo"));
-
-function ImageFeedLazyRmemo() {
+function ImageFeedCallbackMemo() {
   const [entries, setEntries] = useState<articleType[]>([]);
   const [error] = useState<string | null>(null);
 
-  function shuffleArray<T>(array: T[]): T[] {
-    const newArr = [...array];
+  const shuffleArray = useShuffleArray<articleType>();
 
-    for (let i = newArr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-    }
-
-    const returnArray = newArr.slice(0, 100);
-
-    return returnArray;
-  }
+  const containerStyle: React.CSSProperties = useMemo(
+    () => ({
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+    }),
+    []
+  );
 
   useEffect(() => {
-    const cachedData = localStorage.getItem("picsumImagesLazy");
+    const cachedData = localStorage.getItem("picsumImagesCallback");
 
     if (cachedData) {
       const data: articleType[] = JSON.parse(cachedData);
@@ -41,7 +39,7 @@ function ImageFeedLazyRmemo() {
           if (data) {
             const list: articleType[] = shuffleArray(data);
             console.log("nu kör sätt entries" + list);
-            localStorage.setItem("picsumImagesLazy", JSON.stringify(list));
+            localStorage.setItem("picsumImagesCallback", JSON.stringify(list));
             setEntries(list);
           }
         } catch (e) {
@@ -63,21 +61,13 @@ function ImageFeedLazyRmemo() {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-      }}
-    >
+    <div style={containerStyle}>
       <div>
-        <h1>Lazy load and React Memo List</h1>
-        <Suspense>
-          <UlCompLazy list={entries} />
-        </Suspense>
+        <h1>React memo list + callback + usememo</h1>
+        <UlComp list={entries} />
       </div>
     </div>
   );
 }
 
-export default ImageFeedLazyRmemo;
+export default ImageFeedCallbackMemo;

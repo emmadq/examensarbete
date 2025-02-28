@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Ul from "../comp/imageFeedUl";
+import Ul from "../../comp/imageFeedUl";
 
 export type articleType = {
   id: number;

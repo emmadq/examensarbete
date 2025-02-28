@@ -68,18 +68,24 @@ const NoPaginationStandaloneL = lazy(
 const PaginationStandaloneL = lazy(
   () => import("./pages/Pagination/PaginationStandalone.tsx")
 );
-const ImageFeedShowL = lazy(() => import("./pages/ShowPages.tsx"));
-const ImageFeedL = lazy(() => import("./pages/ImageFeedBaseList.tsx"));
-const ImageFeedRmemoL = lazy(() => import("./pages/ImageFeedRmemo.tsx"));
-const ImageFeedCallbaclMemoL = lazy(
-  () => import("./pages/ImageFeedCallbackMemo.tsx")
+const ImageFeedShowL = lazy(() => import("./pages/ImageFeed/ShowPages.tsx"));
+const ImageFeedL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedBaseList.tsx")
 );
-const ImageFeedLazyL = lazy(() => import("./pages/ImageFeedLazyRmemo.tsx"));
+const ImageFeedRmemoL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedRmemo.tsx")
+);
+const ImageFeedCallbaclMemoL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedCallbackMemo.tsx")
+);
+const ImageFeedLazyL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedLazyRmemo.tsx")
+);
 const ImageFeedInfScrollL = lazy(
-  () => import("./pages/ImageFeedInfScroll.tsx")
+  () => import("./pages/ImageFeed/ImageFeedInfScroll.tsx")
 );
 const ImageFeedInfScrollCallbackL = lazy(
-  () => import("./pages/ImageFeedInfScrollCallback.tsx")
+  () => import("./pages/ImageFeed/ImageFeedInfScrollCallback.tsx")
 );
 
 const StatisticsL = lazy(() => import("./pages/Statistics.tsx"));
@@ -97,61 +103,55 @@ createRoot(document.getElementById("root")!).render(
       persistOptions={{ persister: localStoragePersister }}
     >
       <BrowserRouter>
-        <Nav>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route index element={<AppL />} />
-              <Route path="/coviddata" element={<BigDataCovidL />} />
-              <Route path="/covidmemo" element={<BigDataCovidMemoL />} />
+        {/* <Nav> */}
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route index element={<AppL />} />
+            <Route path="/coviddata" element={<BigDataCovidL />} />
+            <Route path="/covidmemo" element={<BigDataCovidMemoL />} />
 
-              <Route
-                path="/covidreactmemo"
-                element={<BigDataCovidReactMemoL />}
-              />
-              <Route path="/coviddatamq" element={<BigDataCovidMemoQueryL />} />
-              <Route path="/coviddataquery" element={<BigDataCovidQueryL />} />
-              <Route path="/querycomparison" element={<QueryComparisonL />} />
-              <Route
-                path="/covidcallback"
-                element={<BigDataCovidCallbackL />}
-              />
-              <Route
-                path="/coviddatapagination"
-                element={<BigDataCovidPaginationL />}
-              />
-              <Route
-                path="/coviddatalocalstorage"
-                element={<BigDataCovidLocalStorageL />}
-              />
-              <Route
-                path="/coviddatanopagination"
-                element={<NoPaginationStandaloneL />}
-              />
-              <Route
-                path="/coviddatapaginationstandalone"
-                element={<PaginationStandaloneL />}
-              />
-              <Route path="/ShowImageFeed" element={<ImageFeedShowL />} />
-              <Route path="/article" element={<ImageFeedL />} />
-              <Route path="/articleRmemo" element={<ImageFeedRmemoL />} />
-              <Route
-                path="/articleRmemoCallbMemo"
-                element={<ImageFeedCallbaclMemoL />}
-              />
+            <Route
+              path="/covidreactmemo"
+              element={<BigDataCovidReactMemoL />}
+            />
+            <Route path="/coviddatamq" element={<BigDataCovidMemoQueryL />} />
+            <Route path="/coviddataquery" element={<BigDataCovidQueryL />} />
+            <Route path="/querycomparison" element={<QueryComparisonL />} />
+            <Route path="/covidcallback" element={<BigDataCovidCallbackL />} />
+            <Route
+              path="/coviddatapagination"
+              element={<BigDataCovidPaginationL />}
+            />
+            <Route
+              path="/coviddatalocalstorage"
+              element={<BigDataCovidLocalStorageL />}
+            />
+            <Route
+              path="/coviddatanopagination"
+              element={<NoPaginationStandaloneL />}
+            />
+            <Route
+              path="/coviddatapaginationstandalone"
+              element={<PaginationStandaloneL />}
+            />
+            <Route path="/ShowImageFeed" element={<ImageFeedShowL />} />
+            <Route path="/article" element={<ImageFeedL />} />
+            <Route path="/articleRmemo" element={<ImageFeedRmemoL />} />
+            <Route
+              path="/articleRmemoCallbMemo"
+              element={<ImageFeedCallbaclMemoL />}
+            />
 
-              <Route path="/articleLazy" element={<ImageFeedLazyL />} />
-              <Route
-                path="/articleInfScroll"
-                element={<ImageFeedInfScrollL />}
-              />
-              <Route
-                path="/articleInfScrollCallback"
-                element={<ImageFeedInfScrollCallbackL />}
-              />
-              <Route path="/statistics" element={<StatisticsL />} />
-            </Routes>
-          </Suspense>
-        </Nav>
+            <Route path="/articleLazy" element={<ImageFeedLazyL />} />
+            <Route path="/articleInfScroll" element={<ImageFeedInfScrollL />} />
+            <Route
+              path="/articleInfScrollCallback"
+              element={<ImageFeedInfScrollCallbackL />}
+            />
+            <Route path="/statistics" element={<StatisticsL />} />
+          </Routes>
+        </Suspense>
+        {/* </Nav> */}
       </BrowserRouter>
     </PersistQueryClientProvider>
   </StrictMode>
