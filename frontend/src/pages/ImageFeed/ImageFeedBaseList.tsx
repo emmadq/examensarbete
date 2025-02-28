@@ -1,4 +1,3 @@
-import { Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 
 function ImageFeedBaseList() {
@@ -69,7 +68,14 @@ function ImageFeedBaseList() {
       <ul>
         {entries.map((e) => (
           <li key={e.id} style={{ listStyleType: "none" }}>
-            <Paper elevation={10}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <br />
               <h2>{e.author}</h2>
               {e.url && (
@@ -88,7 +94,7 @@ function ImageFeedBaseList() {
                 </p>
               )}
               <br />
-            </Paper>
+            </div>
             <br />
             <br />
             <br />

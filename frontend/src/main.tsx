@@ -68,18 +68,24 @@ const NoPaginationStandaloneL = lazy(
 const PaginationStandaloneL = lazy(
   () => import("./pages/Pagination/PaginationStandalone.tsx")
 );
-const ImageFeedShowL = lazy(() => import("./pages/ShowPages.tsx"));
-const ImageFeedL = lazy(() => import("./pages/ImageFeedBaseList.tsx"));
-const ImageFeedRmemoL = lazy(() => import("./pages/ImageFeedRmemo.tsx"));
-const ImageFeedCallbaclMemoL = lazy(
-  () => import("./pages/ImageFeedCallbackMemo.tsx")
+const ImageFeedShowL = lazy(() => import("./pages/ImageFeed/ShowPages.tsx"));
+const ImageFeedL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedBaseList.tsx")
 );
-const ImageFeedLazyL = lazy(() => import("./pages/ImageFeedLazyRmemo.tsx"));
+const ImageFeedRmemoL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedRmemo.tsx")
+);
+const ImageFeedCallbaclMemoL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedCallbackMemo.tsx")
+);
+const ImageFeedLazyL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedLazyRmemo.tsx")
+);
 const ImageFeedInfScrollL = lazy(
-  () => import("./pages/ImageFeedInfScroll.tsx")
+  () => import("./pages/ImageFeed/ImageFeedInfScroll.tsx")
 );
 const ImageFeedInfScrollCallbackL = lazy(
-  () => import("./pages/ImageFeedInfScrollCallback.tsx")
+  () => import("./pages/ImageFeed/ImageFeedInfScrollCallback.tsx")
 );
 
 const StatisticsL = lazy(() => import("./pages/Statistics.tsx"));

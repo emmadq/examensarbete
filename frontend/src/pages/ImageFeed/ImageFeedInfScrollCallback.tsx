@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import Ul from "../comp/imageFeedUlRmemo";
-import useShuffleArray from "../comp/shuffleArray";
+import Ul from "../../comp/imageFeedUlRmemo";
+import useShuffleArray from "../../comp/shuffleArray";
 
 export type articleType = {
   id: number;
