@@ -1,5 +1,4 @@
-import Paper from "@mui/material/Paper";
-import { articleType } from "../pages/ImageFeedInfScroll";
+import { articleType } from "../pages/ImageFeed/ImageFeedInfScroll";
 
 interface UlProps {
   list: articleType[];
@@ -17,7 +16,14 @@ function Ul({ list }: UlProps) {
     >
       {list.map((e, index) => (
         <li key={index + e.id} style={{ listStyleType: "none" }}>
-          <Paper elevation={10}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <br />
             <h2>{e.author}</h2>
             {e.url && (
@@ -36,7 +42,7 @@ function Ul({ list }: UlProps) {
               </p>
             )}
             <br />
-          </Paper>
+          </div>
           <br />
           <br />
           <br />
