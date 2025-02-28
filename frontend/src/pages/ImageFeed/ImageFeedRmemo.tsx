@@ -1,25 +1,27 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { articleType } from "./ImageFeedInfScroll";
-import UlComp from "../comp/imageFeedUlRmemo";
-import useShuffleArray from "../comp/shuffleArray";
+import UlComp from "../../comp/imageFeedUlRmemo";
+import React from "react";
 
-function ImageFeedCallbackMemo() {
+function ImageFeedRmemo() {
   const [entries, setEntries] = useState<articleType[]>([]);
   const [error] = useState<string | null>(null);
 
-  const shuffleArray = useShuffleArray<articleType>();
+  function shuffleArray<T>(array: T[]): T[] {
+    const newArr = [...array];
 
-  const containerStyle: React.CSSProperties = useMemo(
-    () => ({
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-    }),
-    []
-  );
+    for (let i = newArr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+
+    const returnArray = newArr.slice(0, 100);
+
+    return returnArray;
+  }
 
   useEffect(() => {
-    const cachedData = localStorage.getItem("picsumImagesCallback");
+    const cachedData = localStorage.getItem("picsumImages");
 
     if (cachedData) {
       const data: articleType[] = JSON.parse(cachedData);
@@ -39,7 +41,7 @@ function ImageFeedCallbackMemo() {
           if (data) {
             const list: articleType[] = shuffleArray(data);
             console.log("nu kör sätt entries" + list);
-            localStorage.setItem("picsumImagesCallback", JSON.stringify(list));
+            localStorage.setItem("picsumImages", JSON.stringify(list));
             setEntries(list);
           }
         } catch (e) {
@@ -61,13 +63,11 @@ function ImageFeedCallbackMemo() {
   }
 
   return (
-    <div style={containerStyle}>
-      <div>
-        <h1>React memo list + callback + usememo</h1>
-        <UlComp list={entries} />
-      </div>
+    <div>
+      <h1>React memo list</h1>
+      <UlComp list={entries} />
     </div>
   );
 }
 
-export default ImageFeedCallbackMemo;
+export default React.memo(ImageFeedRmemo);
