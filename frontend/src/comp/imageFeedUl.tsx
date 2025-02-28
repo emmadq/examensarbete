@@ -1,4 +1,3 @@
-import Paper from "@mui/material/Paper";
 import { articleType } from "../pages/ImageFeed/ImageFeedInfScroll";
 
 interface UlProps {

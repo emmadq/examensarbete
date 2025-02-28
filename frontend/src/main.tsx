@@ -15,7 +15,7 @@ import "./index.css";
 // import NoPaginationStandalone from "./pages/Pagination/NoPaginationStandalone.tsx";
 // import PaginationStandalone from "./pages/Pagination/PaginationStandalone.tsx";
 
-import Nav from "./pages/Nav.tsx";
+// import Nav from "./pages/Nav.tsx";
 
 import { BrowserRouter, Routes, Route } from "react-router";
 
