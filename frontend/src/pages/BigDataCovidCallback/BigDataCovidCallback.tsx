@@ -40,13 +40,11 @@ const BigDataCovidCallback = () => {
         <div
           style={{
             display: "flex",
-            justifyContent: "center", // Centers the button horizontally
-            marginBottom: "15px", // Adds space between the button and the component
+            justifyContent: "center",
+            marginBottom: "15px",
           }}
         >
-          <button onClick={toggleOrder} style={{ backgroundColor: "#ffffff" }}>
-            Toggle sorting
-          </button>
+          <button onClick={toggleOrder}>Toggle sorting</button>
         </div>
         <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
           <BigDataCovidTableNoCallback order={order} dataset={dataset} />
@@ -60,16 +58,14 @@ const BigDataCovidCallback = () => {
         <div
           style={{
             display: "flex",
-            alignItems: "center", // Centers the button horizontally
-            marginBottom: "15px", // Adds space between the button and the component
+            alignItems: "center",
+            marginBottom: "15px",
             flexDirection: "column",
           }}
         >
           <h3>Callback standalone</h3>
 
-          <button onClick={toggleOrder} style={{ backgroundColor: "#ffffff" }}>
-            Toggle sorting
-          </button>
+          <button onClick={toggleOrder}>Toggle sorting</button>
         </div>
         <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
           <StandaloneCallback order={order} dataset={dataset} />
@@ -83,13 +79,11 @@ const BigDataCovidCallback = () => {
         <div
           style={{
             display: "flex",
-            justifyContent: "center", // Centers the button horizontally
-            marginBottom: "15px", // Adds space between the button and the component
+            justifyContent: "center",
+            marginBottom: "15px",
           }}
         >
-          <button onClick={toggleOrder} style={{ backgroundColor: "#ffffff" }}>
-            Toggle sorting
-          </button>
+          <button onClick={toggleOrder}>Toggle sorting</button>
         </div>
         <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
           <StandalonePlain order={order} dataset={dataset} />
