@@ -7,7 +7,7 @@ function shuffleArray<T>() {
       const j = Math.floor(Math.random() * (i + 1));
       [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
     }
-    return newArr.slice(0, 100);
+    return array;
   }, []);
 }
 

@@ -22,14 +22,11 @@ function ImageFeedBaseList() {
 
     const returnArray = newArr.slice(0, 100);
 
-    return returnArray;
+    return array;
   }
 
   useEffect(() => {
-    const totalPages = 10;
-    const randomPage = Math.floor(Math.random() * totalPages) + 1;
-
-    fetch(`https://picsum.photos/v2/list?page=${randomPage}&limit=500`)
+    fetch(`https://picsum.photos/v2/list?page=${8}&limit=500`)
       .then((resp) => resp.json())
       .then((data) => {
         try {
