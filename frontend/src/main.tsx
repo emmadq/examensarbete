@@ -75,6 +75,9 @@ const ImageFeedL = lazy(
 const ImageFeedRmemoL = lazy(
   () => import("./pages/ImageFeed/ImageFeedRmemo.tsx")
 );
+const ImageFeedRmemoQueryL = lazy(
+  () => import("./pages/ImageFeed/ImageFeedRmemoQuery.tsx")
+);
 const ImageFeedCallbaclMemoL = lazy(
   () => import("./pages/ImageFeed/ImageFeedCallbackMemo.tsx")
 );
@@ -137,6 +140,11 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/ShowImageFeed" element={<ImageFeedShowL />} />
             <Route path="/article" element={<ImageFeedL />} />
             <Route path="/articleRmemo" element={<ImageFeedRmemoL />} />
+            <Route
+              path="/articleRmemoQuery"
+              element={<ImageFeedRmemoQueryL />}
+            />
+
             <Route
               path="/articleRmemoCallbMemo"
               element={<ImageFeedCallbaclMemoL />}
