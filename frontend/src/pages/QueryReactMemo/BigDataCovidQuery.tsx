@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./QueryReactMemo.css"; // Import the CSS
@@ -16,10 +16,21 @@ const fetchDataset = async () => {
 };
 
 function BigDataCovidQuery() {
+  const [isRendering, setIsRendering] = useState(true);
   const datasetQuery = useQuery({
     queryKey: ["dataset"],
     queryFn: fetchDataset,
   });
+
+  useEffect(() => {
+    requestIdleCallback(() => {
+      setIsRendering(false);
+    });
+  }, []);
+
+  if (isRendering) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

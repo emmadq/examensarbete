@@ -75,7 +75,7 @@ function App() {
               <Link to="/coviddatanopagination">No Pagination</Link>
             </li>
             <li>
-              <Link to="/BigDataCovidPaginationL">Comparison</Link>
+              <Link to="/bigdatacovidpagination">Comparison</Link>
             </li>
           </ul>
         )}
