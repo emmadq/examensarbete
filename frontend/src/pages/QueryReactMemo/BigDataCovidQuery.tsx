@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./QueryReactMemo.css"; // Import the CSS
@@ -69,4 +69,4 @@ function BigDataCovidQuery() {
   );
 }
 
-export default memo(BigDataCovidQuery);
+export default BigDataCovidQuery;
