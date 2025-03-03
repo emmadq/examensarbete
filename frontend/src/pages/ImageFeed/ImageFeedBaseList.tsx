@@ -20,7 +20,7 @@ function ImageFeedBaseList() {
       [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
     }
 
-    const returnArray = newArr.slice(0, 100);
+    // const returnArray = newArr.slice(0, 100);
 
     return array;
   }

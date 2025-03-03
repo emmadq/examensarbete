@@ -24,7 +24,7 @@ function ImageFeedInfScroll() {
       [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
     }
 
-    const returnArray = newArr.slice(0, 10);
+    // const returnArray = newArr.slice(0, 10);
     return array;
   }
 
