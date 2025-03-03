@@ -32,11 +32,20 @@ const BigDataCovidCallback = () => {
 
     fetchData();
   }, []);
+
   if (version === "comparison")
     return (
       <>
         <h3>Comparison</h3>
-        <button onClick={toggleOrder}>Toggle sorting</button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "15px",
+          }}
+        >
+          <button onClick={toggleOrder}>Toggle sorting</button>
+        </div>
         <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
           <BigDataCovidTableNoCallback order={order} dataset={dataset} />
           <BigDataCovidTableCallBack order={order} dataset={dataset} />
@@ -46,9 +55,18 @@ const BigDataCovidCallback = () => {
   else if (version === "standalone") {
     return (
       <>
-        <h3>Callback standalone</h3>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "15px",
+            flexDirection: "column",
+          }}
+        >
+          <h3>Callback standalone</h3>
 
-        <button onClick={toggleOrder}>Toggle sorting</button>
+          <button onClick={toggleOrder}>Toggle sorting</button>
+        </div>
         <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
           <StandaloneCallback order={order} dataset={dataset} />
         </div>
@@ -58,11 +76,20 @@ const BigDataCovidCallback = () => {
     return (
       <>
         <h3>Plain</h3>
-        <button onClick={toggleOrder}>Toggle sorting</button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "15px",
+          }}
+        >
+          <button onClick={toggleOrder}>Toggle sorting</button>
+        </div>
         <div style={{ margin: "15px", display: "flex", gap: "15px" }}>
           <StandalonePlain order={order} dataset={dataset} />
         </div>
       </>
     );
 };
+
 export default BigDataCovidCallback;

@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  Collapse,
-  ListItemButton,
-  TablePagination,
-} from "@mui/material";
+import "./Pagination.css"; // Import the CSS file
 
 interface CovidData {
   state: string;
@@ -19,11 +11,10 @@ interface PaginationProps {
   allStates: string[];
   page: number;
   rowsPerPage: number;
-  handlePageChange: (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
+  handlePageChange: (newPage: number) => void;
+  handleChangeRowsPerPage: (
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => void;
-  handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement>) => void;
   stateAbbreviations: { [key: string]: string };
 }
 
@@ -48,42 +39,59 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 
   return (
-    <div>
-      <Paper>
-        <List>
-          {pagedStates.map((state) => (
-            <div key={state}>
-              <ListItemButton onClick={() => handleStateToggle(state)}>
-                <ListItemText primary={stateAbbreviations[state] || state} />
-              </ListItemButton>
-              <Collapse in={openState === state} timeout="auto" unmountOnExit>
-                <List>
-                  {groupedData[state].map((item, index) => (
-                    <ListItem key={state + item.positive + index}>
-                      <ListItemText primary={`Positives: ${item.positive}`} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Collapse>
-            </div>
-          ))}
-        </List>
-      </Paper>
-      <TablePagination
-        sx={{
-          "& .MuiTablePagination-select, & .MuiTablePagination-input, & .MuiTablePagination-toolbar":
-            {
-              color: "white",
-            },
-        }}
-        rowsPerPageOptions={[25, 50]}
-        component="div"
-        count={allStates.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+    <div className="pagination-container">
+      <div className="list-container">
+        {pagedStates.map((state) => (
+          <div key={state} className="state-item">
+            <button
+              className="toggle-button"
+              onClick={() => handleStateToggle(state)}
+            >
+              <span className="state-name">
+                {stateAbbreviations[state] || state}
+              </span>
+              <span className="toggle-icon">
+                {openState === state ? "-" : "+"}
+              </span>
+            </button>
+            {openState === state && (
+              <ul className="state-details">
+                {groupedData[state].map((item, index) => (
+                  <li key={state + item.positive + index}>
+                    <strong>Positives:</strong> {item.positive}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="pagination-controls">
+        <button
+          className="page-button"
+          disabled={page === 0}
+          onClick={() => handlePageChange(page - 1)}
+        >
+          Previous
+        </button>
+        <span className="page-info">Page {page + 1}</span>
+        <button
+          className="page-button"
+          disabled={(page + 1) * rowsPerPage >= allStates.length}
+          onClick={() => handlePageChange(page + 1)}
+        >
+          Next
+        </button>
+        <select
+          className="rows-select"
+          value={rowsPerPage}
+          onChange={handleChangeRowsPerPage}
+        >
+          <option value={25}>25</option>
+          <option value={50}>50</option>
+        </select>
+      </div>
     </div>
   );
 };
