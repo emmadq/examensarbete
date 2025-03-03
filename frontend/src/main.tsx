@@ -121,7 +121,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/querycomparison" element={<QueryComparisonL />} />
             <Route path="/covidcallback" element={<BigDataCovidCallbackL />} />
             <Route
-              path="/coviddatapagination"
+              path="/bigdatacovidpagination"
               element={<BigDataCovidPaginationL />}
             />
             <Route

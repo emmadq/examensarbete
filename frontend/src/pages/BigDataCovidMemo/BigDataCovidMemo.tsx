@@ -14,6 +14,7 @@ interface CovidData {
 const BigDataCovidMemo = () => {
   const [order, setOrder] = useState<boolean>(false);
   const [dataset, setDataset] = useState<CovidData[]>([]);
+  const [isRendering, setIsRendering] = useState(true);
   const [searchParams] = useSearchParams();
   const version = searchParams.get("version") || "plain";
   const toggleOrder = () => {
@@ -27,10 +28,15 @@ const BigDataCovidMemo = () => {
       );
       const data: CovidData[] = await response.json();
       setDataset(data);
+      setIsRendering(false);
     };
 
     fetchData();
   }, []);
+
+  if (isRendering) {
+    return <div>Loading...</div>;
+  }
 
   if (version === "comparison")
     return (

@@ -13,8 +13,10 @@ interface CovidData {
 const BigDataCovidCallback = () => {
   const [order, setOrder] = useState<boolean>(false);
   const [dataset, setDataset] = useState<CovidData[]>([]);
+  const [isRendering, setIsRendering] = useState(true);
   const [searchParams] = useSearchParams();
   const version = searchParams.get("version") || "plain";
+
   const toggleOrder = () => {
     setOrder((prev) => !prev);
     console.log("\n");
@@ -28,10 +30,15 @@ const BigDataCovidCallback = () => {
 
       const data: CovidData[] = await response.json();
       setDataset(data);
+      setIsRendering(false);
     };
 
     fetchData();
   }, []);
+
+  if (isRendering) {
+    return <div>Loading...</div>;
+  }
 
   if (version === "comparison")
     return (
@@ -64,7 +71,6 @@ const BigDataCovidCallback = () => {
           }}
         >
           <h3>Callback standalone</h3>
-
           <button onClick={toggleOrder}>Toggle sorting</button>
         </div>
         <div style={{ margin: "15px", display: "flex", gap: "15px" }}>

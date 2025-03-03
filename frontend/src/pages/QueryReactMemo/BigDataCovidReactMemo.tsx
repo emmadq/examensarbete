@@ -8,7 +8,7 @@ interface CovidData {
 
 const ReactMemo = () => {
   const [dataset, setDataset] = useState<CovidData[]>([]);
-
+  const [isRendering, setIsRendering] = useState(true);
   useEffect(() => {
     const fetchDataset = async () => {
       const response = await fetch(
@@ -22,6 +22,16 @@ const ReactMemo = () => {
   }, []);
 
   console.log("RE-RENDER");
+
+  useEffect(() => {
+    requestIdleCallback(() => {
+      setIsRendering(false);
+    });
+  }, []);
+
+  if (isRendering) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
