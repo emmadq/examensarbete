@@ -51,10 +51,36 @@ function BigDataCovid() {
   console.log("RE-RENDER ");
 
   return (
-    <>
-      <button onClick={toggleOrder}>Toggle Sort Order</button>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
+      <button
+        onClick={toggleOrder}
+        style={{
+          backgroundColor: "#ffffff",
+          marginBottom: "15px",
+          marginTop: "15px",
+          width: "50%",
+          alignSelf: "center",
+        }}
+      >
+        Toggle Sort Order
+      </button>
       <div style={{ display: "flex", gap: "5px" }}>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            gap: "5px",
+            border: "white 1px solid",
+            padding: "10px",
+            borderRadius: "15px",
+            flexDirection: "column",
+          }}
+        >
           <h3>With useMemo</h3>
           <table>
             <thead>
@@ -73,7 +99,16 @@ function BigDataCovid() {
             </tbody>
           </table>
         </div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            gap: "5px",
+            border: "white 1px solid",
+            padding: "10px",
+            borderRadius: "15px",
+            flexDirection: "column",
+          }}
+        >
           <h3>Without useMemo</h3>
           <table>
             <thead>
@@ -93,7 +128,7 @@ function BigDataCovid() {
           </table>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

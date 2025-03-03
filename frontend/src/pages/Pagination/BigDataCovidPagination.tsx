@@ -71,6 +71,7 @@ export default function BigDataCovidPagination() {
   const [dataset, setDataset] = useState<CovidData[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,20 +80,18 @@ export default function BigDataCovidPagination() {
       );
       const data: CovidData[] = await response.json();
       setDataset(data);
+      setIsLoading(false);
     };
 
     fetchData();
   }, []);
 
-  const handlePageChange = (
-    _event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
+  const handlePageChange = (newPage: number) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
@@ -111,8 +110,11 @@ export default function BigDataCovidPagination() {
 
   const allStates = Object.keys(groupedData);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
-    <div style={{ display: "flex", gap: "14px" }}>
+    <div style={{ display: "flex", gap: "14px", alignItems: "start" }}>
       <Pagination
         groupedData={groupedData}
         allStates={allStates}

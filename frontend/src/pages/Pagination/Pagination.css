@@ -1,0 +1,101 @@
+.pagination-container {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  color: black;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.list-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.state-item {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
+
+.toggle-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+  color: black;
+}
+
+.toggle-button:hover {
+  background: #f4f4f4;
+}
+
+.state-name {
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.toggle-icon {
+  font-size: 14px;
+  color: gray;
+}
+
+.state-details {
+  margin: 0;
+  padding: 8px 16px;
+  list-style: none;
+  background: #f9f9f9;
+  border-radius: 4px;
+  color: black;
+}
+
+.state-details li {
+  padding: 4px 0;
+  font-size: 14px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.page-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.page-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 16px;
+  color: black;
+}
+
+.rows-select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: black;
+  background: white;
+}
