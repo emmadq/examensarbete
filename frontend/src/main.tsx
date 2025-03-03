@@ -46,12 +46,14 @@ persistQueryClient({
 
 const AppL = lazy(() => import("./App.tsx"));
 const BigDataCovidL = lazy(() => import("./pages/BigDataCovid.tsx"));
-const BigDataCovidLocalStorageL = lazy(
-  () => import("./pages/LocalStorage/BigDataCovidLocalStorage.tsx")
+const ReactQueryWithLocalStorageL = lazy(
+  () => import("./pages/LocalStorage/ReactQueryWithLocalStorage.tsx")
 );
-const BigDataCovidQueryL = lazy(() => import("./pages/BigDataCovidQuery.tsx"));
+const BigDataCovidQueryL = lazy(
+  () => import("./pages/QueryReactMemo/BigDataCovidQuery.tsx")
+);
 const BigDataCovidMemoQueryL = lazy(
-  () => import("./pages/BigDataCovidMemoQuery.tsx")
+  () => import("./pages/QueryReactMemo/BigDataCovidMemoQuery.tsx")
 );
 const BigDataCovidMemoL = lazy(
   () => import("./pages/BigDataCovidMemo/BigDataCovidMemo.tsx")
@@ -123,8 +125,8 @@ createRoot(document.getElementById("root")!).render(
               element={<BigDataCovidPaginationL />}
             />
             <Route
-              path="/coviddatalocalstorage"
-              element={<BigDataCovidLocalStorageL />}
+              path="/ReactQueryWithLocalStorage"
+              element={<ReactQueryWithLocalStorageL />}
             />
             <Route
               path="/coviddatanopagination"

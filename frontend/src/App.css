@@ -1,41 +1,89 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 #root {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.page-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #e2f1e7;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menu {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  background: #387478;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  list-style-type: none;
+  text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.list-item {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e9ecef;
 }
 
-.card {
-  padding: 2em;
+.list-item:last-child {
+  border-bottom: none;
 }
 
-.read-the-docs {
-  color: #888;
+.clickable {
+  cursor: pointer;
+  color: #000000;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clickable::after {
+  content: "▼";
+  font-size: 0.75rem;
+  color: #131518;
+  transition: transform 0.2s;
+}
+
+.clickable:hover {
+  color: #243642;
+}
+
+.submenu {
+  list-style-type: none;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.submenu li {
+  margin: 0.5rem 0;
+}
+
+.submenu a {
+  display: block;
+  color: #e2f1e7;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.submenu a:hover {
+  text-decoration: underline;
+}
+
+a {
+  color: #e2f1e7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #e2f1e7;
 }
