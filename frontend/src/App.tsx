@@ -42,7 +42,6 @@ function App() {
             </li>
           </ul>
         )}
-
         <li className="list-item clickable" onClick={() => openLinks("memo")}>
           Covid Data with useMemo
         </li>
@@ -59,7 +58,6 @@ function App() {
             </li>
           </ul>
         )}
-
         <li
           className="list-item clickable"
           onClick={() => openLinks("pagination")}
@@ -79,7 +77,6 @@ function App() {
             </li>
           </ul>
         )}
-
         <li
           className="list-item clickable"
           onClick={() => openLinks("querymemo")}
@@ -102,43 +99,57 @@ function App() {
             </li>
           </ul>
         )}
-
-        <li className="list-item">
-          <Link to="/ReactQueryWithLocalStorage">
-            React Query with Local Storage
-          </Link>
-        </li>
-        <li className="list-item">
-          <Link to="/coviddata">Covid Data</Link>
-        </li>
-        <li className="list-item">
-          <Link to="/ShowImageFeed">Picture Feed Test</Link>
-        </li>
-        <li className="list-item">
-          <Link to="/article">Picture Feed</Link>
-        </li>
-        <li className="list-item">
-          <Link to="/articleRmemo">Picture Feed React.memo</Link>
-        </li>
-        <li className="list-item">
-          <Link to="/articleRmemoCallbMemo">
-            Picture Feed React.memo, Callback and Memo
-          </Link>
-        </li>
-        <li className="list-item">
-          <Link to="/articleLazy">Picture Feed Lazy Loading</Link>
-        </li>
-        <li className="list-item">
-          <Link to="/articleInfScroll">Picture Feed Infinite Scroll</Link>
-        </li>
-        <li className="list-item">
-          <Link to="/articleInfScrollCallback">
-            Picture Feed Infinite Scroll with Callback
-          </Link>
-        </li>
-        <li className="list-item">
-          <Link to="/statistics">Statistics</Link>
-        </li>
+        <li
+          className="list-item clickable"
+          onClick={() => openLinks("imageFeed")}
+        >
+          Image Feed
+        </li>{" "}
+        {openLink === "imageFeed" && (
+          <ul className="submenu">
+            <li>
+              {" "}
+              <Link to="/ShowImageFeed">Test all image list components</Link>
+            </li>
+            <br />
+            <li>
+              {" "}
+              <Link to="/article">Base list</Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/articleRmemo">React.memo</Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/articleRmemo">React.memo</Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/articleRmemoQuery">React.memo and useQuery</Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/articleRmemoCallbMemo">
+                React.memo, useCallback and useMemo
+              </Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/articleLazy">Lazy loading</Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/articleInfScroll">Infinite scroll</Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/articleInfScrollCallback">
+                Infinite scroll med useCallback och useMemo
+              </Link>
+            </li>
+          </ul>
+        )}
       </ul>
 
       <ReactQueryDevtools />

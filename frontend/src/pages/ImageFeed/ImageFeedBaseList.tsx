@@ -94,8 +94,6 @@ function ImageFeedBaseList() {
             </div>
             <br />
             <br />
-            <br />
-            <br />
           </li>
         ))}
       </ul>
