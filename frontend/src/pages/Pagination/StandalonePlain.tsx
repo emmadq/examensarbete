@@ -1,4 +1,3 @@
-import React from "react";
 import "./StandalonePlain.css";
 
 interface CovidData {
