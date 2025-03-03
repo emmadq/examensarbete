@@ -14,6 +14,8 @@ export type articleType = {
 function ImageFeedInfScrollCallback() {
   const [entriess, setEntries] = useState<articleType[]>([]);
   const [page, setPage] = useState(0);
+  const [imageCount, setImageCount] = useState(0);
+  const [view, setView] = useState<articleType[]>([]);
 
   const [error] = useState<string | null>(null);
   const shuffleArray = useShuffleArray<articleType>();
@@ -31,7 +33,7 @@ function ImageFeedInfScrollCallback() {
           setPage((prevPage) => prevPage + 1);
         }
       },
-      { rootMargin: "0px", threshold: 0.1 }
+      { rootMargin: "0px", threshold: 0.6 }
     );
 
     if (sentinelRef.current) {
@@ -43,28 +45,39 @@ function ImageFeedInfScrollCallback() {
         observer.unobserve(sentinelRef.current);
       }
     };
-  }, []);
+  }, [entriess]);
 
   useEffect(() => {
-    fetch(`https://picsum.photos/v2/list?page=${8}&limit=${10}`)
+    if (entriess.length > 0) {
+      setView((prev) => [
+        ...prev,
+        ...entriess.slice(imageCount, imageCount + 10),
+      ]);
+      console.log("image count: " + imageCount + " view: " + view);
+      setImageCount(imageCount + 10);
+    }
+  }, [entriess, page]);
+
+  useEffect(() => {
+    fetch(`https://picsum.photos/v2/list?page=${8}&limit=500`)
       .then((resp) => resp.json())
       .then((data) => {
         try {
           if (data) {
             const newData: articleType[] = shuffleArray(data);
-            setEntries((prev) => [...prev, ...newData]);
+            setEntries(newData);
           }
         } catch (e) {
           console.log(e);
         }
       });
-  }, [page]);
+  }, []);
 
   if (error) {
     return <div>{error}</div>;
   }
 
-  if (entriess.length < 0) {
+  if (view.length === 0) {
     return (
       <>
         <h2>Loading...</h2>;
@@ -83,7 +96,7 @@ function ImageFeedInfScrollCallback() {
       <div>
         <h1>Infinite Scroll + callback list</h1>
 
-        <Ul list={entriess} />
+        <Ul list={view} />
         <div
           ref={sentinelRef}
           style={{
