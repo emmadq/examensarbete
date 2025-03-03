@@ -45,8 +45,6 @@ function Ul({ list }: UlProps) {
           </div>
           <br />
           <br />
-          <br />
-          <br />
         </li>
       ))}
     </ul>

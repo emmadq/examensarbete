@@ -12,7 +12,7 @@ export type articleType = {
 
 function ImageFeedInfScroll() {
   const [entriess, setEntries] = useState<articleType[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   const [error] = useState<string | null>(null);
 
@@ -24,9 +24,8 @@ function ImageFeedInfScroll() {
       [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
     }
 
-    const returnArray = newArr.slice(0, 10);
-    console.log("return array: " + returnArray);
-    return returnArray;
+    // const returnArray = newArr.slice(0, 10);
+    return array;
   }
 
   const sentinelRef = useRef(null);
@@ -57,17 +56,12 @@ function ImageFeedInfScroll() {
   }, [entriess]);
 
   useEffect(() => {
-    const totalPages = 20;
-    const randomPage = Math.floor(Math.random() * totalPages) + 1;
-
-    fetch(`https://picsum.photos/v2/list?page=${randomPage}&limit=200`)
+    fetch(`https://picsum.photos/v2/list?page=${8}&limit=${10}`)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log("data: " + data);
         try {
           if (data) {
             const newData: articleType[] = shuffleArray(data);
-            console.log("newdata: " + newData);
             setEntries((prev) => [...prev, ...newData]);
           }
         } catch (e) {
@@ -75,9 +69,6 @@ function ImageFeedInfScroll() {
         }
       });
   }, [page]);
-
-  console.log("entries: " + entriess);
-  console.log("page: " + page);
 
   if (error) {
     return <div>{error}</div>;
