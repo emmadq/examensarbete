@@ -28,12 +28,6 @@ const StandalonePlain = ({ dataset }: StandaloneProps) => {
   return (
     <div className="table-container">
       <table className="table">
-        <thead>
-          <tr className="table-header">
-            <th className="table-cell">State</th>
-            <th className="table-cell">Positives</th>
-          </tr>
-        </thead>
         <tbody>
           {dataset.map((item, index) => (
             <tr key={index} className="table-row">
