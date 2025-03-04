@@ -1,71 +1,47 @@
-import React, { useState } from "react";
-import "./Pagination.css"; // Import the CSS file
-
+import "./Pagination.css";
 interface CovidData {
   state: string;
   positive: number;
+  id: number;
 }
 
 interface PaginationProps {
-  groupedData: { [key: string]: CovidData[] };
-  allStates: string[];
+  dataset: CovidData[];
   page: number;
   rowsPerPage: number;
   handlePageChange: (newPage: number) => void;
   handleChangeRowsPerPage: (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => void;
-  stateAbbreviations: { [key: string]: string };
 }
 
 const Pagination: React.FC<PaginationProps> = ({
-  groupedData,
-  allStates,
+  dataset,
   page,
   rowsPerPage,
   handlePageChange,
   handleChangeRowsPerPage,
-  stateAbbreviations,
 }) => {
-  const [openState, setOpenState] = useState<string | null>(null);
-
-  const handleStateToggle = (state: string) => {
-    setOpenState(openState === state ? null : state);
-  };
-
-  const pagedStates = allStates.slice(
-    page * rowsPerPage,
-    (page + 1) * rowsPerPage
-  );
+  const pagedData = dataset.slice(page * rowsPerPage, (page + 1) * rowsPerPage);
 
   return (
-    <div className="pagination-container">
-      <div className="list-container">
-        {pagedStates.map((state) => (
-          <div key={state} className="state-item">
-            <button
-              className="toggle-button"
-              onClick={() => handleStateToggle(state)}
-            >
-              <span className="state-name">
-                {stateAbbreviations[state] || state}
-              </span>
-              <span className="toggle-icon">
-                {openState === state ? "-" : "+"}
-              </span>
-            </button>
-            {openState === state && (
-              <ul className="state-details">
-                {groupedData[state].map((item, index) => (
-                  <li key={state + item.positive + index}>
-                    <strong>Positives:</strong> {item.positive}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
-      </div>
+    <div className="table-container">
+      <table className="table">
+        {/* <thead>
+          <tr className="table-header">
+            <th className="table-cell">State</th>
+            <th className="table-cell">Positives</th>
+          </tr>
+        </thead> */}
+        <tbody>
+          {pagedData.map((item, index) => (
+            <tr key={index} className="table-row">
+              <td className="table-cell">{item.state}</td>
+              <td className="table-cell">{item.positive}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       <div className="pagination-controls">
         <button
@@ -78,7 +54,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <span className="page-info">Page {page + 1}</span>
         <button
           className="page-button"
-          disabled={(page + 1) * rowsPerPage >= allStates.length}
+          disabled={(page + 1) * rowsPerPage >= dataset.length}
           onClick={() => handlePageChange(page + 1)}
         >
           Next
