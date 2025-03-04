@@ -28,9 +28,5 @@ export default function NoPaginationStandalone() {
     return <div>Loading...</div>;
   }
 
-  return (
-    <div style={{ display: "flex", gap: "14px" }}>
-      <StandalonePlain dataset={dataset} />
-    </div>
-  );
+  return <>{dataset.length > 0 && <StandalonePlain dataset={dataset} />}</>;
 }

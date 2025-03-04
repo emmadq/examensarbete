@@ -8,65 +8,6 @@ interface CovidData {
   id: number;
 }
 
-const stateAbbreviations: { [key: string]: string } = {
-  AL: "Alabama",
-  AK: "Alaska",
-  AZ: "Arizona",
-  AR: "Arkansas",
-  CA: "California",
-  CO: "Colorado",
-  CT: "Connecticut",
-  DE: "Delaware",
-  FL: "Florida",
-  GA: "Georgia",
-  HI: "Hawaii",
-  ID: "Idaho",
-  IL: "Illinois",
-  IN: "Indiana",
-  IA: "Iowa",
-  KS: "Kansas",
-  KY: "Kentucky",
-  LA: "Louisiana",
-  ME: "Maine",
-  MD: "Maryland",
-  MA: "Massachusetts",
-  MI: "Michigan",
-  MN: "Minnesota",
-  MS: "Mississippi",
-  MO: "Missouri",
-  MT: "Montana",
-  NE: "Nebraska",
-  NV: "Nevada",
-  NH: "New Hampshire",
-  NJ: "New Jersey",
-  NM: "New Mexico",
-  NY: "New York",
-  NC: "North Carolina",
-  ND: "North Dakota",
-  OH: "Ohio",
-  OK: "Oklahoma",
-  OR: "Oregon",
-  PA: "Pennsylvania",
-  RI: "Rhode Island",
-  SC: "South Carolina",
-  SD: "South Dakota",
-  TN: "Tennessee",
-  TX: "Texas",
-  UT: "Utah",
-  VT: "Vermont",
-  VA: "Virginia",
-  WA: "Washington",
-  WV: "West Virginia",
-  WI: "Wisconsin",
-  WY: "Wyoming",
-  GU: "Guam",
-  MP: "Northern Mariana Islands",
-  PR: "Puerto Rico",
-  VI: "Virgin Islands",
-  DC: "Washington DC",
-  AS: "American Samoa",
-};
-
 export default function BigDataCovidPagination() {
   const [dataset, setDataset] = useState<CovidData[]>([]);
   const [page, setPage] = useState(0);
@@ -97,32 +38,17 @@ export default function BigDataCovidPagination() {
     setPage(0);
   };
 
-  const groupedData = dataset.reduce(
-    (acc: { [key: string]: CovidData[] }, item) => {
-      if (!acc[item.state]) {
-        acc[item.state] = [];
-      }
-      acc[item.state].push(item);
-      return acc;
-    },
-    {}
-  );
-
-  const allStates = Object.keys(groupedData);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
   return (
     <div style={{ display: "flex", gap: "14px", alignItems: "start" }}>
       <Pagination
-        groupedData={groupedData}
-        allStates={allStates}
+        dataset={dataset}
         page={page}
         rowsPerPage={rowsPerPage}
         handlePageChange={handlePageChange}
         handleChangeRowsPerPage={handleChangeRowsPerPage}
-        stateAbbreviations={stateAbbreviations}
       />
       <StandalonePlain dataset={dataset} />
     </div>
