@@ -26,7 +26,7 @@ function BigDataCovidMQ() {
   });
 
   if (!datasetQuery.isFetched && !datasetQuery.isSuccess) {
-    return <div>Loading...</div>;
+    return <></>;
   }
 
   return (
