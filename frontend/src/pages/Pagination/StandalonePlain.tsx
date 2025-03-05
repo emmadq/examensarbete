@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./StandalonePlain.css";
 
 interface CovidData {
@@ -12,18 +11,18 @@ interface StandaloneProps {
 }
 
 const StandalonePlain = ({ dataset }: StandaloneProps) => {
-  const [isRendering, setIsRendering] = useState(true);
+  // const [isRendering, setIsRendering] = useState(true);
   console.log("RE-RENDER");
 
-  useEffect(() => {
-    requestIdleCallback(() => {
-      setIsRendering(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   requestIdleCallback(() => {
+  //     setIsRendering(false);
+  //   });
+  // }, []);
 
-  if (isRendering) {
-    return <div>Loading...</div>;
-  }
+  // if (isRendering) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div className="table-container">

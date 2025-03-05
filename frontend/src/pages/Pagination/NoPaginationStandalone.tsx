@@ -9,7 +9,7 @@ interface CovidData {
 
 export default function NoPaginationStandalone() {
   const [dataset, setDataset] = useState<CovidData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,15 +18,15 @@ export default function NoPaginationStandalone() {
       );
       const data: CovidData[] = await response.json();
       setDataset(data);
-      setIsLoading(false);
+      // setIsLoading(false);
     };
 
     fetchData();
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return <>{dataset.length > 0 && <StandalonePlain dataset={dataset} />}</>;
 }
