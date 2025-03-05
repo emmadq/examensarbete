@@ -122,10 +122,6 @@ function App() {
             </li>
             <li>
               {" "}
-              <Link to="/articleRmemo">React.memo</Link>
-            </li>
-            <li>
-              {" "}
               <Link to="/articleRmemoQuery">React.memo and useQuery</Link>
             </li>
             <li>
