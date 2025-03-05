@@ -45,7 +45,7 @@ function ImageFeedInfScrollCallback() {
         observer.unobserve(sentinelRef.current);
       }
     };
-  }, [entriess]);
+  }, [view]);
 
   useEffect(() => {
     if (entriess.length > 0) {
@@ -102,7 +102,8 @@ function ImageFeedInfScrollCallback() {
           style={{
             height: "300px",
             width: "60%",
-            marginLeft: "40px",
+            marginLeft: "80px",
+            marginBottom: "80px",
           }}
         ></div>
       </div>

@@ -37,7 +37,6 @@ function ImageFeedInfScroll() {
   //   threshold: 0.5,
   // };
   useEffect(() => {
-    if (!sentinelRef.current) return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
