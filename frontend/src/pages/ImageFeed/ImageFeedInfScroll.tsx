@@ -37,6 +37,7 @@ function ImageFeedInfScroll() {
   //   threshold: 0.5,
   // };
   useEffect(() => {
+    if (!sentinelRef.current) return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -109,7 +110,7 @@ function ImageFeedInfScroll() {
           style={{
             height: "300px",
             width: "60%",
-            marginLeft: "40px",
+            marginLeft: "80px",
           }}
         ></div>
       </div>
