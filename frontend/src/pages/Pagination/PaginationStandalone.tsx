@@ -24,9 +24,9 @@ export default function PaginationStandalone() {
     fetchData();
   }, []);
 
-  if (dataset.length === 0) {
-    return <div>Loading...</div>;
-  }
+  // if (dataset.length === 0) {
+  //   return <div>Loading...</div>;
+  // }
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
