@@ -1,4 +1,4 @@
-import { lazy, StrictMode, Suspense } from "react";
+import { lazy, StrictMode, Suspense, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 // import App from "./App.tsx";
@@ -17,7 +17,7 @@ import "./index.css";
 
 // import Nav from "./pages/Nav.tsx";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import { QueryClient } from "@tanstack/react-query";
 import {
@@ -27,7 +27,7 @@ import {
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 
-const appInsights = new ApplicationInsights({
+export const appInsights = new ApplicationInsights({
   config: {
     connectionString:
       "InstrumentationKey=b9c4691a-4678-47b8-bbc6-38c76c160349;IngestionEndpoint=https://swedencentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://swedencentral.livediagnostics.monitor.azure.com/;ApplicationId=10395cec-e376-4e3b-9184-63739c5e1255",
@@ -36,6 +36,17 @@ const appInsights = new ApplicationInsights({
 });
 appInsights.loadAppInsights();
 appInsights.trackPageView();
+
+function RouteChangeTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const pageName = location.pathname;
+    appInsights.trackPageView({ name: pageName });
+  }, [location]);
+
+  return null;
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -119,6 +130,7 @@ createRoot(document.getElementById("root")!).render(
       persistOptions={{ persister: localStoragePersister }}
     >
       <BrowserRouter>
+        <RouteChangeTracker />
         {/* <Nav> */}
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
