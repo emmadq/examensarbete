@@ -25,6 +25,16 @@ import {
   PersistQueryClientProvider,
 } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+
+const appInsights = new ApplicationInsights({
+  config: {
+    connectionString:
+      "InstrumentationKey=b9c4691a-4678-47b8-bbc6-38c76c160349;IngestionEndpoint=https://swedencentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://swedencentral.livediagnostics.monitor.azure.com/;ApplicationId=10395cec-e376-4e3b-9184-63739c5e1255",
+  },
+});
+appInsights.loadAppInsights();
+appInsights.trackPageView();
 
 const queryClient = new QueryClient({
   defaultOptions: {
