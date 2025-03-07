@@ -17,7 +17,7 @@ import "./index.css";
 
 // import Nav from "./pages/Nav.tsx";
 
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { QueryClient } from "@tanstack/react-query";
 import {
