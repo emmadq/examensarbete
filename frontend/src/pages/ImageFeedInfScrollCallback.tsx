@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import Ul from "../../comp/imageFeedUlRmemo";
-import useShuffleArray from "../../comp/shuffleArray";
+import Ul from "../comp/imageFeedUlRmemo";
+import useShuffleArray from "../comp/shuffleArray";
 
 export type articleType = {
   id: number;
@@ -53,7 +53,6 @@ function ImageFeedInfScrollCallback() {
         ...prev,
         ...entriess.slice(imageCount, imageCount + 10),
       ]);
-      console.log("image count: " + imageCount + " view: " + view);
       setImageCount(imageCount + 10);
     }
   }, [entriess, page]);

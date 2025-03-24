@@ -1,4 +1,4 @@
-import { articleType } from "../pages/ImageFeed/ImageFeedInfScroll";
+import { articleType } from "../pages/ImageFeedInfScrollCallback";
 import React from "react";
 
 interface UlProps {

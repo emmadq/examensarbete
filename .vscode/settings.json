@@ -1,3 +1,6 @@
 {
-  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"]
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.showBuildDuringDeployPrompt": false,
+  "appService.defaultWebAppToDeploy": "/subscriptions/473ea206-e7c1-49f6-a2ec-8be32032fa85/resourceGroups/Examensarbete-optimerad/providers/Microsoft.Web/sites/App-examensarbete-optimerad",
+  "appService.deploySubpath": "."
 }
