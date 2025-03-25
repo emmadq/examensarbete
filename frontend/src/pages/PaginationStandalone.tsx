@@ -6,6 +6,7 @@ interface CovidData {
   positive: number;
   id: number;
 }
+//
 
 export default function PaginationStandalone() {
   const [dataset, setDataset] = useState<CovidData[]>([]);
