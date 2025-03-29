@@ -10,7 +10,7 @@ export type articleType = {
   url: string;
   download_url: string;
 };
-//
+
 function ImageFeedInfScrollCallback() {
   const [entriess, setEntries] = useState<articleType[]>([]);
   const [page, setPage] = useState(0);
