@@ -30,7 +30,9 @@ jobs:
           npm run build --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: |
+          cd frontend/dist
+          zip -r $GITHUB_WORKSPACE/dist.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
