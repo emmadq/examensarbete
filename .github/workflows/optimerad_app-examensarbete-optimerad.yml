@@ -30,8 +30,7 @@ jobs:
       - name: Paketera dist
         run: |
           cd frontend/dist
-          zip -r ../../../release.zip .
-        working-directory: ${{ github.workspace }}
+          zip -r $GITHUB_WORKSPACE/release.zip .
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,11 +39,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Debug — lista rotmappen
+        run: ls -la $GITHUB_WORKSPACE
+
       - name: Deploya bara dist, med “clean”
         uses: azure/webapps-deploy@v3
 
         with:
           app-name: ${{ secrets.AZURE_APP_NAME }}
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_OPTIMERAD }}
-          package: "release.zip"
+          package: ${{ github.workspace }}/release.zip
           clean: true
