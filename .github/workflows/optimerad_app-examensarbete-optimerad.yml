@@ -12,41 +12,39 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "22"
-
-      - name: npm install, build, and test
+      - name: Build frontend
         run: |
           cd frontend
           npm install
-          REACT_PROFILING=true npm run build -- --profile
-
-      - name: Paketera dist
+          npm run build
+      - name: Package dist
         run: |
           cd frontend/dist
-          zip -r $GITHUB_WORKSPACE/release.zip .
+          zip -r release.zip .
+      - name: Upload release.zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-zip
+          path: frontend/dist/release.zip
 
   deploy:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Download release.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: release-zip
 
       - name: Debug — lista rotmappen
-        run: ls -la $GITHUB_WORKSPACE
+        run: ls -la .
 
-      - name: Deploya bara dist, med “clean”
+      - name: Deploy to Azure (clean)
         uses: azure/webapps-deploy@v3
-
         with:
           app-name: ${{ secrets.AZURE_APP_NAME }}
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_OPTIMERAD }}
-          package: ${{ github.workspace }}/release.zip
+          package: "./release.zip"
           clean: true
